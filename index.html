@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SALA • Safe-Load Analytics — Biomechanical Risk Research & Predictive Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #0A1628;
+  --primary-light: #132240;
+  --accent: #00D4AA;
+  --accent-glow: rgba(0, 212, 170, 0.3);
+  --accent-secondary: #0088FF;
+  --text: #E8EDF5;
+  --text-muted: #8892A8;
+  --text-dim: #5A6478;
+  --surface: #0D1A30;
+  --surface-light: #162544;
+  --border: rgba(255,255,255,0.06);
+  --danger: #FF4D6A;
+  --warning: #FFB020;
+  --gradient-1: linear-gradient(135deg, #00D4AA 0%, #0088FF 100%);
+  --gradient-2: linear-gradient(135deg, #0A1628 0%, #132240 50%, #162544 100%);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--primary);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--primary); }
+::-webkit-scrollbar-thumb { background: var(--surface-light); border-radius: 4px; }
+
+/* Navigation */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(20px);
+  background: rgba(10, 22, 40, 0.8);
+  border-bottom: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+nav.scrolled {
+  padding: 0.6rem 2rem;
+  background: rgba(10, 22, 40, 0.95);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.nav-logo-icon {
+  width: 38px;
+  height: 38px;
+  background: var(--gradient-1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: var(--primary);
+}
+
+.nav-logo-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 2px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-cta {
+  padding: 0.6rem 1.5rem;
+  background: var(--gradient-1);
+  color: var(--primary) !important;
+  border-radius: 8px;
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  transition: transform 0.3s, box-shadow 0.3s !important;
+}
+
+.nav-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+.nav-cta::after { display: none !important; }
+
+.mobile-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 5px;
+}
+
+.mobile-toggle span {
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+  transition: all 0.3s;
+}
+
+/* Hero */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 8rem 2rem 4rem;
+  overflow: hidden;
+}
+
+.hero-bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,170,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,170,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+}
+
+.hero-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.hero-glow-1 {
+  top: -100px;
+  right: -100px;
+  background: var(--accent);
+}
+
+.hero-glow-2 {
+  bottom: -200px;
+  left: -100px;
+  background: var(--accent-secondary);
+}
+
+.hero-content {
+  max-width: 1200px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  background: rgba(0,212,170,0.1);
+  border: 1px solid rgba(0,212,170,0.2);
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 0.8s ease;
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 0.8s ease 0.1s both;
+}
+
+.hero h1 .gradient-text {
+  background: var(--gradient-1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  max-width: 540px;
+  animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  animation: fadeInUp 0.8s ease 0.3s both;
+}
+
+.btn-primary {
+  padding: 0.9rem 2rem;
+  background: var(--gradient-1);
+  color: var(--primary);
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px var(--accent-glow);
+}
+
+.btn-secondary {
+  padding: 0.9rem 2rem;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(0,212,170,0.05);
+}
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeInUp 1s ease 0.4s both;
+}
+
+.spine-visual {
+  position: relative;
+  width: 320px;
+  height: 480px;
+}
+
+.spine-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Stats bar */
+.stats-bar {
+  padding: 3rem 2rem;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.stats-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: var(--gradient-1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Sections */
+section {
+  padding: 6rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.section-label::before {
+  content: '';
+  width: 20px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.section-title {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  line-height: 1.7;
+  margin-bottom: 3rem;
+}
+
+/* Algorithm Cards */
+.algo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.algo-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.algo-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-1);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.algo-card:hover {
+  border-color: rgba(0,212,170,0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.algo-card:hover::before {
+  opacity: 1;
+}
+
+.algo-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(0,212,170,0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.algo-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--accent);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.algo-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.algo-card p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.algo-formula {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--accent);
+  background: rgba(0,212,170,0.08);
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  display: inline-block;
+  margin-top: 0.75rem;
+  border: 1px solid rgba(0,212,170,0.15);
+}
+
+/* Risk Index */
+.risk-section {
+  padding: 6rem 2rem;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.risk-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.risk-display {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.risk-meter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.risk-circle {
+  position: relative;
+  width: 260px;
+  height: 260px;
+}
+
+.risk-circle svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.risk-circle-bg {
+  fill: none;
+  stroke: var(--surface-light);
+  stroke-width: 12;
+}
+
+.risk-circle-fill {
+  fill: none;
+  stroke: url(#riskGradient);
+  stroke-width: 12;
+  stroke-linecap: round;
+  stroke-dasharray: 691.15;
+  stroke-dashoffset: 691.15;
+  transition: stroke-dashoffset 2s ease;
+}
+
+.risk-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.risk-number {
+  font-size: 3.5rem;
+  font-weight: 900;
+  font-family: 'JetBrains Mono', monospace;
+  background: var(--gradient-1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.risk-unit {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.risk-label {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.risk-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.risk-detail-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--surface-light);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.risk-detail-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.risk-detail-icon.safe { background: rgba(0,212,170,0.15); color: var(--accent); }
+.risk-detail-icon.warn { background: rgba(255,176,32,0.15); color: var(--warning); }
+.risk-detail-icon.danger { background: rgba(255,77,106,0.15); color: var(--danger); }
+
+.risk-detail-text h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.risk-detail-text p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.risk-bar {
+  width: 100%;
+  height: 4px;
+  background: var(--primary-light);
+  border-radius: 2px;
+  margin-top: 0.5rem;
+  overflow: hidden;
+}
+
+.risk-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 1.5s ease;
+}
+
+.risk-bar-fill.safe { background: var(--accent); }
+.risk-bar-fill.warn { background: var(--warning); }
+.risk-bar-fill.danger { background: var(--danger); }
+
+/* Impact Section */
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.impact-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.4s;
+}
+
+.impact-card:hover {
+  border-color: rgba(0,212,170,0.2);
+  transform: translateY(-4px);
+}
+
+.impact-icon-wrap {
+  width: 64px;
+  height: 64px;
+  background: rgba(0,212,170,0.08);
+  border: 1px solid rgba(0,212,170,0.15);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+
+.impact-icon-wrap svg {
+  width: 28px;
+  height: 28px;
+  stroke: var(--accent);
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.impact-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.impact-card p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Compliance */
+.compliance-section {
+  padding: 6rem 2rem;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.compliance-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.compliance-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 3rem;
+}
+
+.compliance-card {
+  background: var(--surface-light);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.compliance-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, rgba(0,212,170,0.08) 0%, transparent 70%);
+}
+
+.compliance-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.compliance-card h3 .check-icon {
+  width: 24px;
+  height: 24px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.compliance-card h3 .check-icon svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--primary);
+  fill: none;
+  stroke-width: 3;
+}
+
+.compliance-card ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.compliance-card li {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  padding-left: 1.5rem;
+  position: relative;
+  line-height: 1.6;
+}
+
+.compliance-card li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ROI Section */
+.roi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.roi-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.4s;
+  position: relative;
+}
+
+.roi-card:hover {
+  border-color: rgba(0,212,170,0.2);
+  transform: translateY(-4px);
+}
+
+.roi-metric {
+  font-size: 2.5rem;
+  font-weight: 900;
+  font-family: 'JetBrains Mono', monospace;
+  background: var(--gradient-1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+}
+
+.roi-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.roi-card p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* CTA */
+.cta-section {
+  padding: 6rem 2rem;
+  text-align: center;
+}
+
+.cta-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 4rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-inner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 50% 0%, rgba(0,212,170,0.08) 0%, transparent 50%);
+}
+
+.cta-inner h2 {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.cta-inner p {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  position: relative;
+}
+
+/* Footer */
+footer {
+  padding: 3rem 2rem;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-logo-icon {
+  width: 28px;
+  height: 28px;
+  background: var(--gradient-1);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.65rem;
+  color: var(--primary);
+}
+
+.footer-text {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero-description {
+    margin: 0 auto 2.5rem;
+  }
+  .hero-actions {
+    justify-content: center;
+  }
+  .hero-visual {
+    order: -1;
+  }
+  .spine-visual {
+    width: 240px;
+    height: 360px;
+  }
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .algo-grid {
+    grid-template-columns: 1fr;
+  }
+  .risk-display {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .impact-grid {
+    grid-template-columns: 1fr;
+  }
+  .compliance-grid {
+    grid-template-columns: 1fr;
+  }
+  .roi-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(10,22,40,0.98);
+    flex-direction: column;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--border);
+    gap: 1rem;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .mobile-toggle {
+    display: flex;
+  }
+  .hero {
+    padding: 7rem 1.5rem 3rem;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .stat-number {
+    font-size: 2rem;
+  }
+  section {
+    padding: 4rem 1.5rem;
+  }
+  .cta-inner {
+    padding: 3rem 1.5rem;
+  }
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer-inner {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  .risk-circle {
+    width: 200px;
+    height: 200px;
+  }
+  .risk-number {
+    font-size: 2.5rem;
+  }
+}
+
+/* Smooth section transitions */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Particle canvas */
+#particle-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">SL</div>
+    <span class="nav-logo-text">SALA</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#algorithm">Algorithm</a></li>
+    <li><a href="#risk">Risk Index</a></li>
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#compliance">Compliance</a></li>
+    <li><a href="#roi">ROI</a></li>
+    <li><a href="#contact" class="nav-cta">Request Demo</a></li>
+  </ul>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
+  <canvas id="particle-canvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Biomechanical AI for Occupational Health
+      </div>
+      <h1>Preventing the <span class="gradient-text">Sykefravær Crisis</span> Through Biomechanical Intelligence</h1>
+      <p class="hero-description">SALA is a proactive AI platform designed to tackle the high rate of absences due to musculoskeletal disorders in the transport sector. Unlike reactive HMS systems, SALA intervenes before injury occurs — monitoring biomechanical risks in real time.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">
+          Get Started
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#algorithm" class="btn-secondary">
+          Explore Technology
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="spine-visual">
+        <svg class="spine-svg" viewBox="0 0 320 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Stylized spine visualization -->
+          <defs>
+            <linearGradient id="spineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#00D4AA;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#0088FF;stop-opacity:1" />
+            </linearGradient>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+              <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          
+          <!-- Vertebrae -->
+          <g filter="url(#glow)">
+            <!-- Thoracic vertebrae -->
+            <rect x="130" y="60" width="60" height="18" rx="9" fill="none" stroke="rgba(0,212,170,0.3)" stroke-width="1.5">
+              <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite"/>
+            </rect>
+            <rect x="125" y="88" width="70" height="18" rx="9" fill="none" stroke="rgba(0,212,170,0.35)" stroke-width="1.5">
+              <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" begin="0.15s" repeatCount="indefinite"/>
+            </rect>
+            <rect x="122" y="116" width="76" height="18" rx="9" fill="none" stroke="rgba(0,212,170,0.4)" stroke-width="1.5">
+              <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" begin="0.3s" repeatCount="indefinite"/>
+            </rect>
+            <rect x="120" y="144" width="80" height="18" rx="9" fill="none" stroke="rgba(0,212,170,0.4)" stroke-width="1.5">
+              <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" begin="0.45s" repeatCount="indefinite"/>
+            </rect>
+            <rect x="118" y="172" width="84" height="18" rx="9" fill="none" stroke="rgba(0,212,170,0.45)" stroke-width="1.5">
+              <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" begin="0.6s" repeatCount="indefinite"/>
+            </rect>
+            
+            <!-- Lumbar vertebrae -->
+            <rect x="115" y="200" width="90" height="22" rx="11" fill="none" stroke="rgba(0,212,170,0.5)" stroke-width="1.5">
+              <animate attributeName="opacity" values="0.4;0.9;0.4" dur="3s" begin="0.75s" repeatCount="indefinite"/>
+            </rect>
+            <rect x="112" y="232" width="96" height="22" rx="11" fill="none" stroke="rgba(0,212,170,0.55)" stroke-width="1.5">
+              <animate attributeName="opacity" values="0.4;0.9;0.4" dur="3s" begin="0.9s" repeatCount="indefinite"/>
+            </rect>
+            <rect x="110" y="264" width="100" height="22" rx="11" fill="none" stroke="rgba(0,212,170,0.6)" stroke-width="1.5">
+              <animate attributeName="opacity" values="0.4;0.9;0.4" dur="3s" begin="1.05s" repeatCount="indefinite"/>
+            </rect>
+            <rect x="108" y="296" width="104" height="22" rx="11" fill="none" stroke="rgba(0,212,170,0.65)" stroke-width="1.5">
+              <animate attributeName="opacity" values="0.4;0.9;0.4" dur="3s" begin="1.2s" repeatCount="indefinite"/>
+            </rect>
+            
+            <!-- L5/S1 Highlight -->
+            <rect x="105" y="328" width="110" height="26" rx="13" fill="none" stroke="url(#spineGrad)" stroke-width="2.5">
+              <animate attributeName="stroke-width" values="2;3.5;2" dur="2s" repeatCount="indefinite"/>
+            </rect>
+            
+            <!-- Sacrum -->
+            <path d="M120 365 L115 400 Q160 420 205 400 L200 365" fill="none" stroke="rgba(0,136,255,0.4)" stroke-width="1.5">
+              <animate attributeName="opacity" values="0.3;0.7;0.3" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+            </path>
+            
+            <!-- Spinal cord -->
+            <line x1="160" y1="60" x2="160" y2="340" stroke="url(#spineGrad)" stroke-width="2" opacity="0.3" stroke-dasharray="4 4">
+              <animate attributeName="stroke-dashoffset" values="0;-8" dur="1s" repeatCount="indefinite"/>
+            </line>
+          </g>
+          
+          <!-- L5/S1 Label -->
+          <g>
+            <line x1="215" y1="340" x2="260" y2="340" stroke="rgba(0,212,170,0.5)" stroke-width="1"/>
+            <text x="265" y="344" fill="#00D4AA" font-size="11" font-family="JetBrains Mono, monospace" font-weight="500">L5/S1</text>
+            <text x="265" y="360" fill="#5A6478" font-size="9" font-family="Inter, sans-serif">Compression Zone</text>
+            
+            <!-- Animated pulse on L5/S1 -->
+            <circle cx="160" cy="341" r="8" fill="none" stroke="#00D4AA" stroke-width="1.5" opacity="0">
+              <animate attributeName="r" values="8;25" dur="2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.6;0" dur="2s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+          
+          <!-- Compression arrows -->
+          <g opacity="0.6">
+            <path d="M160 30 L160 55" stroke="#FF4D6A" stroke-width="1.5" marker-end="url(#arrowRed)">
+              <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2.5s" repeatCount="indefinite"/>
+            </path>
+            <path d="M160 380 L160 355" stroke="#FF4D6A" stroke-width="1.5" marker-end="url(#arrowRed)">
+              <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2.5s" begin="0.5s" repeatCount="indefinite"/>
+            </path>
+          </g>
+          
+          <defs>
+            <marker id="arrowRed" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+              <path d="M0,0 L8,3 L0,6" fill="#FF4D6A" opacity="0.8"/>
+            </marker>
+          </defs>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Bar -->
+<div class="stats-bar">
+  <div class="stats-grid">
+    <div class="stat-item fade-in">
+      <div class="stat-number" data-target="42" data-suffix="%">0%</div>
+      <div class="stat-label">Reduction in musculoskeletal sick leave</div>
+    </div>
+    <div class="stat-item fade-in">
+      <div class="stat-number" data-target="3" data-suffix="×">0×</div>
+      <div class="stat-label">Higher spinal load on icy surfaces</div>
+    </div>
+    <div class="stat-item fade-in">
+      <div class="stat-number" data-target="37.5" data-suffix="h" data-decimal="true">0h</div>
+      <div class="stat-label">Norwegian work week standard modeled</div>
+    </div>
+    <div class="stat-item fade-in">
+      <div class="stat-number" data-target="2631" data-suffix="-1">0-1</div>
+      <div class="stat-label">ISO 2631-1 vibration standard compliance</div>
+    </div>
+  </div>
+</div>
+
+<!-- Core Algorithm -->
+<section id="algorithm">
+  <div class="fade-in">
+    <span class="section-label">Core Innovation</span>
+    <h2 class="section-title">The Biomechanical Algorithm</h2>
+    <p class="section-subtitle">SALA calculates the Risk Index (R<sub>i</sub>) focused on the human element — not just the vehicle. Our proprietary algorithm integrates four critical biomechanical factors.</p>
+  </div>
+  <div class="algo-grid">
+    <div class="algo-card fade-in">
+      <div class="algo-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C9 2 7 4 7 7c0 2 1 3 1 5v2c0 2-1 3-1 5 0 3 2 5 5 5s5-2 5-5c0-2-1-3-1-5V12c0-2 1-3 1-5 0-3-2-5-5-5z"/><line x1="12" y1="2" x2="12" y2="7"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+      </div>
+      <h3>Lumbar L5/S1 Analysis</h3>
+      <p>Real-time monitoring of vertebral compression during load lifting. The L5/S1 joint bears the highest biomechanical stress, making it the critical point for injury prevention.</p>
+      <span class="algo-formula">C<sub>compress</sub> = F<sub>load</sub> × d<sub>moment</sub> × k<sub>posture</sub></span>
+    </div>
+    <div class="algo-card fade-in">
+      <div class="algo-icon">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <h3>Surface Factor (S<sub>f</sub>)</h3>
+      <p>Dynamic adjustment for critical conditions — Norway's harsh winters with ice and snow can increase spinal stabilization effort up to 3×. The algorithm adapts risk thresholds in real time.</p>
+      <span class="algo-formula">S<sub>f</sub> = μ<sub>ice</sub> × θ<sub>slope</sub> × W<sub>seasonal</sub></span>
+    </div>
+    <div class="algo-card fade-in">
+      <div class="algo-icon">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <h3>Vibration Exposure (ISO 2631-1)</h3>
+      <p>Protection against whole-body vibration (WBV) to prevent neuromuscular fatigue and chronic pain. Continuous monitoring aligned with international safety standards.</p>
+      <span class="algo-formula">WBV<sub>daily</sub> = A(8) × √t<sub>exposure</sub></span>
+    </div>
+    <div class="algo-card fade-in">
+      <div class="algo-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <h3>Accumulated Fatigue</h3>
+      <p>Modeling based on the Norwegian work standard (37.5h/week) and environmental stressors. Tracks cumulative load across shifts to prevent chronic overexposure.</p>
+      <span class="algo-formula">F<sub>total</sub> = Σ(F<sub>shift</sub> × R<sub>recovery</sub>)</span>
+    </div>
+  </div>
+</section>
+
+<!-- Risk Index -->
+<div class="risk-section" id="risk">
+  <div class="risk-inner">
+    <div class="fade-in">
+      <span class="section-label">Real-Time Intelligence</span>
+      <h2 class="section-title">Risk Index R<sub>i</sub> Dashboard</h2>
+      <p class="section-subtitle">The Risk Index synthesizes all biomechanical factors into a single actionable metric, enabling immediate intervention before injury occurs.</p>
+    </div>
+    <div class="risk-display">
+      <div class="risk-meter fade-in">
+        <div class="risk-circle">
+          <svg viewBox="0 0 240 240">
+            <defs>
+              <linearGradient id="riskGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#00D4AA" />
+                <stop offset="50%" style="stop-color:#FFB020" />
+                <stop offset="100%" style="stop-color:#FF4D6A" />
+              </linearGradient>
+            </defs>
+            <circle class="risk-circle-bg" cx="120" cy="120" r="110"/>
+            <circle class="risk-circle-fill" id="riskCircle" cx="120" cy="120" r="110"/>
+          </svg>
+          <div class="risk-value">
+            <div class="risk-number" id="riskNumber">0</div>
+            <div class="risk-unit">R<sub>i</sub> Score</div>
+          </div>
+        </div>
+        <div class="risk-label">Current Biomechanical Risk Level</div>
+      </div>
+      <div class="risk-details fade-in">
+        <div class="risk-detail-item">
+          <div class="risk-detail-icon safe">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="risk-detail-text">
+            <h4>Low Risk (0–30)</h4>
+            <p>Normal operations — continue standard procedures</p>
+            <div class="risk-bar"><div class="risk-bar-fill safe" style="width: 0%"></div></div>
+          </div>
+        </div>
+        <div class="risk-detail-item">
+          <div class="risk-detail-icon warn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div class="risk-detail-text">
+            <h4>Moderate Risk (31–65)</h4>
+            <p>Recommend mechanical assistance or load division</p>
+            <div class="risk-bar"><div class="risk-bar-fill warn" style="width: 0%"></div></div>
+          </div>
+        </div>
+        <div class="risk-detail-item">
+          <div class="risk-detail-icon danger">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          </div>
+          <div class="risk-detail-text">
+            <h4>Critical Risk (66–100)</h4>
+            <p>Immediate intervention required — halt operation</p>
+            <div class="risk-bar"><div class="risk-bar-fill danger" style="width: 0%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Impact Section -->
+<section id="impact">
+  <div class="fade-in">
+    <span class="section-label">Operational Impact</span>
+    <h2 class="section-title">Transforming Safety Management</h2>
+    <p class="section-subtitle">SALA shifts occupational safety from reactive compliance to proactive prevention, protecting workers while optimizing operations.</p>
+  </div>
+  <div class="impact-grid">
+    <div class="impact-card fade-in">
+      <div class="impact-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <h3>Real-Time Alerts</h3>
+      <p>Drivers receive immediate strategic recommendations via the app — such as requesting mechanical assistance or dividing loads — when risk reaches critical levels.</p>
+    </div>
+    <div class="impact-card fade-in">
+      <div class="impact-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>AML § 4-4 Compliance</h3>
+      <p>The system automates compliance with Norway's Working Environment Act (Arbeidsmiljøloven), providing actionable data for safety delegates (Verneombud).</p>
+    </div>
+    <div class="impact-card fade-in">
+      <div class="impact-icon-wrap">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      </div>
+      <h3>Economic ROI</h3>
+      <p>Massive cost reduction through decreased sick leave (sykemelding), lower staff turnover, reduced insurance premiums, and indirect costs for companies and NAV.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Compliance Section -->
+<div class="compliance-section" id="compliance">
+  <div class="compliance-inner">
+    <div class="fade-in">
+      <span class="section-label">Legal Framework</span>
+      <h2 class="section-title">Built for Norwegian Compliance</h2>
+      <p class="section-subtitle">Fully aligned with Norwegian occupational health legislation and international biomechanical standards.</p>
+    </div>
+    <div class="compliance-grid">
+      <div class="compliance-card fade-in">
+        <h3>
+          <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Arbeidsmiljøloven § 4-4
+        </h3>
+        <ul>
+          <li>Automated documentation of biomechanical risk assessments</li>
+          <li>Real-time data feeds for safety delegates (Verneombud)</li>
+          <li>Shift-level exposure tracking aligned with 37.5h standard</li>
+          <li>Audit-ready reports for regulatory inspections</li>
+          <li>Proactive intervention logs demonstrating duty of care</li>
+        </ul>
+      </div>
+      <div class="compliance-card fade-in">
+        <h3>
+          <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+          International Standards
+        </h3>
+        <ul>
+          <li>ISO 2631-1: Whole-body vibration assessment</li>
+          <li>NISO 4400: Norwegian ergonomic risk evaluation</li>
+          <li>EU Directive 90/269/EEC: Manual handling of loads</li>
+          <li>ISO 11228: Manual handling guidelines</li>
+          <li>EN 1005: Safety of machinery — human physical performance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ROI Section -->
+<section id="roi">
+  <div class="fade-in">
+    <span class="section-label">Return on Investment</span>
+    <h2 class="section-title">Measurable Economic Impact</h2>
+    <p class="section-subtitle">SALA delivers quantifiable savings across sick leave reduction, insurance optimization, and workforce retention.</p>
+  </div>
+  <div class="roi-grid">
+    <div class="roi-card fade-in">
+      <div class="roi-metric" data-target="42" data-suffix="%">0%</div>
+      <h3>Reduced Sick Leave</h3>
+      <p>Significant decrease in musculoskeletal-related absences (sykemelding) within the first 12 months of deployment.</p>
+    </div>
+    <div class="roi-card fade-in">
+      <div class="roi-metric" data-target="68" data-suffix="%">0%</div>
+      <h3>Lower Insurance Premiums</h3>
+      <p>Data-driven risk reduction qualifies for reduced occupational injury insurance costs and NAV contributions.</p>
+    </div>
+    <div class="roi-card fade-in">
+      <div class="roi-metric" data-target="3.2" data-suffix="×" data-decimal="true">0×</div>
+      <h3>ROI in Year One</h3>
+      <p>Average return on investment through combined savings in medical costs, recruitment, and productivity gains.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section" id="contact">
+  <div class="cta-inner fade-in">
+    <h2>Ready to Transform Your <span class="gradient-text">Occupational Safety</span>?</h2>
+    <p>Join leading Norwegian transport companies already using SALA to prevent injuries, ensure compliance, and reduce costs.</p>
+    <div class="cta-buttons">
+      <a href="#" class="btn-primary">
+        Request a Demo
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#" class="btn-secondary">
+        Download Whitepaper
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <div class="footer-logo-icon">SL</div>
+      <span class="footer-text">© 2026 SALA — Safe-Load Analytics. All rights reserved.</span>
+    </div>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Contact</a>
+<a href="https://app-algoritmo.github.io/digital-solutions" 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   style="margin: 0 10px; text-decoration: none; color: #D4AF37;">
+   Developed by Digital Solutions
+</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Navigation scroll effect
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Mobile toggle
+const mobileToggle = document.getElementById('mobileToggle');
+const navLinks = document.getElementById('navLinks');
+mobileToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+  const spans = mobileToggle.querySelectorAll('span');
+  if (navLinks.classList.contains('active')) {
+    spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+    spans[1].style.opacity = '0';
+    spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+  } else {
+    spans[0].style.transform = 'none';
+    spans[1].style.opacity = '1';
+    spans[2].style.transform = 'none';
+  }
+});
+
+// Close mobile nav on link click
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('active');
+    const spans = mobileToggle.querySelectorAll('span');
+    spans[0].style.transform = 'none';
+    spans[1].style.opacity = '1';
+    spans[2].style.transform = 'none';
+  });
+});
+
+// Intersection Observer for fade-in animations
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+
+// Counter animation
+function animateCounter(el) {
+  const target = parseFloat(el.dataset.target);
+  const suffix = el.dataset.suffix || '';
+  const isDecimal = el.dataset.decimal === 'true';
+  const duration = 2000;
+  const startTime = performance.now();
+
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = eased * target;
+
+    if (isDecimal) {
+      el.textContent = current.toFixed(1) + suffix;
+    } else {
+      el.textContent = Math.round(current) + suffix;
+    }
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    }
+  }
+
+  requestAnimationFrame(update);
+}
+
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounter(entry.target);
+      counterObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
+
+// Risk circle animation
+const riskCircle = document.getElementById('riskCircle');
+const riskNumber = document.getElementById('riskNumber');
+const circumference = 2 * Math.PI * 110; // ~691.15
+
+let riskTarget = 0;
+const riskTargetFinal = 57;
+const riskDuration = 2500;
+
+function animateRisk() {
+  const startTime = performance.now();
+
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / riskDuration, 1);
+    const eased = 1 - Math.pow(1 - progress, 4);
+    const current = Math.round(eased * riskTargetFinal);
+
+    riskNumber.textContent = current;
+    const offset = circumference - (current / 100) * circumference;
+    riskCircle.style.strokeDashoffset = offset;
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    }
+  }
+
+  requestAnimationFrame(update);
+}
+
+const riskObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateRisk();
+      riskObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+riskObserver.observe(document.querySelector('.risk-meter'));
+
+// Risk bar fills animation
+const riskBars = document.querySelectorAll('.risk-bar-fill');
+const barValues = [30, 55, 80];
+
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const bars = entry.target.querySelectorAll('.risk-bar-fill');
+      bars.forEach((bar, i) => {
+        setTimeout(() => {
+          bar.style.width = barValues[i] + '%';
+        }, i * 300);
+      });
+      barObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.risk-details').forEach(el => barObserver.observe(el));
+
+// Particle animation
+const canvas = document.getElementById('particle-canvas');
+const ctx = canvas.getContext('2d');
+
+function resizeCanvas() {
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+const particles = [];
+const particleCount = 50;
+
+class Particle {
+  constructor() {
+    this.reset();
+  }
+
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 2 + 0.5;
+    this.speedX = (Math.random() - 0.5) * 0.3;
+    this.speedY = (Math.random() - 0.5) * 0.3;
+    this.opacity = Math.random() * 0.4 + 0.1;
+  }
+
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+
+    if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+      this.reset();
+    }
+  }
+
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(0, 212, 170, ${this.opacity})`;
+    ctx.fill();
+  }
+}
+
+for (let i = 0; i < particleCount; i++) {
+  particles.push(new Particle());
+}
+
+function drawParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  particles.forEach(p => {
+    p.update();
+    p.draw();
+  });
+
+  // Draw connections
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < 120) {
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.strokeStyle = `rgba(0, 212, 170, ${0.06 * (1 - dist / 120)})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+  }
+
+  requestAnimationFrame(drawParticles);
+}
+
+drawParticles();
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const targetId = this.getAttribute('href');
+    if (targetId === '#') return;
+    e.preventDefault();
+    const target = document.querySelector(targetId);
+    if (target) {
+      const offset = 80;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+</body>
+</html>
+
