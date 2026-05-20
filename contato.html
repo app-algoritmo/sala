@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SALA • Contact</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#0A1628;--primary-light:#132240;--accent:#00D4AA;--accent-glow:rgba(0,212,170,0.3);--accent-secondary:#0088FF;--text:#E8EDF5;--text-muted:#8892A8;--text-dim:#5A6478;--surface:#0D1A30;--surface-light:#162544;--border:rgba(255,255,255,0.06);--gradient-1:linear-gradient(135deg,#00D4AA 0%,#0088FF 100%)}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--primary);color:var(--text);line-height:1.6;overflow-x:hidden}
+::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:var(--primary)}::-webkit-scrollbar-thumb{background:var(--surface-light);border-radius:4px}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(20px);background:rgba(10,22,40,0.9);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:0.75rem;text-decoration:none}
+.nav-logo-icon{width:38px;height:38px;background:var(--gradient-1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;color:var(--primary)}
+.nav-logo-text{font-size:1.25rem;font-weight:700;color:var(--text);letter-spacing:2px}
+.nav-right{display:flex;align-items:center;gap:0}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-size:0.9rem;font-weight:500;transition:color 0.3s}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{padding:0.6rem 1.5rem;background:var(--gradient-1);color:var(--primary)!important;border-radius:8px;font-weight:600!important;font-size:0.85rem!important}
+/* LANG */
+.lang-selector{position:relative;margin-left:1.5rem}
+.lang-btn{background:transparent;border:1px solid var(--border);color:var(--text-muted);padding:0.38rem 0.8rem;border-radius:6px;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.25s;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:0.4rem}
+.lang-btn:hover,.lang-btn.open{border-color:var(--accent);color:var(--accent);background:rgba(0,212,170,0.07)}
+.lang-dropdown{position:absolute;top:calc(100% + 8px);right:0;background:#0f1e36;border:1px solid rgba(0,212,170,0.15);border-radius:10px;overflow:hidden;min-width:148px;box-shadow:0 16px 48px rgba(0,0,0,0.6);opacity:0;pointer-events:none;transform:translateY(-8px);transition:all 0.22s ease;z-index:300}
+.lang-dropdown.open{opacity:1;pointer-events:all;transform:translateY(0)}
+.lang-option{display:flex;align-items:center;gap:0.65rem;padding:0.7rem 1rem;cursor:pointer;font-size:0.85rem;color:var(--text-muted);transition:all 0.2s;border:none;background:transparent;width:100%;text-align:left;font-family:'Inter',sans-serif}
+.lang-option:hover{background:rgba(0,212,170,0.07);color:var(--text)}
+.lang-option.active{color:var(--accent);background:rgba(0,212,170,0.06)}
+.lang-flag{width:22px;height:14px;border-radius:2px;overflow:hidden;flex-shrink:0;display:inline-flex}
+.mobile-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:5px;margin-left:1rem}
+.mobile-toggle span{width:24px;height:2px;background:var(--text);transition:all 0.3s}
+/* BACK BUTTON */
+.back-btn{position:fixed;top:90px;left:1.5rem;z-index:100;display:flex;align-items:center;gap:0.5rem;padding:0.5rem 1rem;background:rgba(13,26,48,0.9);border:1px solid var(--border);border-radius:8px;color:var(--text-muted);text-decoration:none;font-size:0.8rem;font-weight:500;transition:all 0.25s;backdrop-filter:blur(10px)}
+.back-btn:hover{border-color:var(--accent);color:var(--accent)}
+/* HERO */
+.page-hero{padding:9rem 2rem 5rem;text-align:center;position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 50% 0%,rgba(0,212,170,0.06) 0%,transparent 50%);pointer-events:none}
+.page-hero-label{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:1rem}
+.page-hero-label::before{content:'';width:20px;height:2px;background:var(--accent)}
+.page-hero h1{font-size:clamp(2rem,4vw,3.5rem);font-weight:800;margin-bottom:1rem}
+.gradient-text{background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.page-hero p{font-size:1.05rem;color:var(--text-muted);max-width:560px;margin:0 auto}
+/* CONTACT LAYOUT */
+.contact-wrap{max-width:1100px;margin:0 auto;padding:0 2rem 6rem;display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;align-items:start}
+.contact-info h2{font-size:1.4rem;font-weight:700;margin-bottom:0.75rem}
+.contact-info p{font-size:0.9rem;color:var(--text-muted);line-height:1.7;margin-bottom:2rem}
+.info-item{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.5rem}
+.info-icon{width:42px;height:42px;background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.info-icon svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.info-text h4{font-size:0.85rem;font-weight:600;margin-bottom:0.2rem}
+.info-text p{font-size:0.85rem;color:var(--text-muted);margin:0}
+.info-text a{color:var(--accent);text-decoration:none}
+/* FORM */
+.contact-form-box{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:2.5rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-group{margin-bottom:1.25rem}
+.form-group label{display:block;font-size:0.8rem;font-weight:600;color:var(--text-muted);margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.5px}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:var(--primary-light);border:1px solid var(--border);border-radius:10px;padding:0.8rem 1rem;color:var(--text);font-size:0.9rem;font-family:'Inter',sans-serif;transition:border-color 0.25s,box-shadow 0.25s;outline:none}
+.form-group textarea{resize:vertical;min-height:130px}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,212,170,0.1)}
+.form-group select option{background:var(--primary-light)}
+.btn-submit{width:100%;padding:1rem;background:var(--gradient-1);color:var(--primary);border:none;border-radius:10px;font-size:0.95rem;font-weight:700;cursor:pointer;transition:all 0.3s;font-family:'Inter',sans-serif;display:flex;align-items:center;justify-content:center;gap:0.5rem}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 30px var(--accent-glow)}
+/* FOOTER */
+footer{background:var(--surface);border-top:1px solid var(--border)}
+.footer-main{max-width:1200px;margin:0 auto;padding:4rem 2rem 3rem;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem}
+.footer-brand{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;text-decoration:none}
+.footer-logo-icon{width:40px;height:40px;background:var(--gradient-1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;color:var(--primary);flex-shrink:0}
+.footer-brand-name{font-size:1.2rem;font-weight:700;letter-spacing:2px;color:var(--text)}
+.footer-slogan{font-size:0.875rem;color:var(--text-muted);line-height:1.7;max-width:280px;margin-bottom:1.5rem}
+.footer-safelast{font-size:0.78rem;color:var(--text-dim)}.footer-safelast a{color:var(--accent);text-decoration:none}
+.footer-col h4{font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text);margin-bottom:1.25rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:0.6rem}
+.footer-col ul a{color:var(--text-muted);text-decoration:none;font-size:0.875rem;transition:color 0.25s}
+.footer-col ul a:hover{color:var(--accent)}
+.footer-social-link{display:flex;align-items:center;gap:0.6rem;color:var(--text-muted);text-decoration:none;font-size:0.875rem;transition:color 0.25s;margin-bottom:0.6rem}
+.footer-social-link:hover{color:var(--accent)}
+.footer-social-link svg{width:15px;height:15px;fill:currentColor;flex-shrink:0}
+.footer-bottom{border-top:1px solid var(--border);padding:1.4rem 2rem}
+.footer-bottom-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.footer-copyright{font-size:0.79rem;color:var(--text-dim)}
+.footer-devlink{font-size:0.79rem;color:var(--text-dim)}.footer-devlink a{color:#c9a84c;text-decoration:none}
+/* COOKIE */
+.cookie-banner{position:fixed;bottom:-220px;left:50%;transform:translateX(-50%);width:calc(100% - 2rem);max-width:920px;background:linear-gradient(135deg,#0c1b30 0%,#0f2040 100%);border:1px solid rgba(0,212,170,0.2);border-radius:16px;padding:1.5rem 2rem;z-index:9999;box-shadow:0 -4px 60px rgba(0,0,0,0.5);display:flex;align-items:center;gap:1.75rem;transition:bottom 0.65s cubic-bezier(0.34,1.4,0.64,1)}
+.cookie-banner.visible{bottom:1.5rem}
+.cookie-icon{width:46px;height:46px;background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.4rem}
+.cookie-content{flex:1;min-width:0}.cookie-content h4{font-size:0.9rem;font-weight:700;color:var(--text);margin-bottom:0.3rem}
+.cookie-content p{font-size:0.8rem;color:var(--text-muted);line-height:1.6}.cookie-content p a{color:var(--accent);text-decoration:none}
+.cookie-actions{display:flex;gap:0.55rem;flex-shrink:0;flex-wrap:wrap}
+.cookie-btn{padding:0.55rem 1.1rem;border-radius:8px;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.25s;font-family:'Inter',sans-serif;white-space:nowrap;border:none}
+.cookie-btn-reject{background:transparent;color:var(--text-muted);border:1px solid var(--border)!important}
+.cookie-btn-customize{background:transparent;color:var(--accent);border:1px solid rgba(0,212,170,0.3)!important}
+.cookie-btn-accept{background:var(--gradient-1);color:var(--primary)}
+@media(max-width:900px){.contact-wrap{grid-template-columns:1fr}.footer-main{grid-template-columns:1fr 1fr;gap:2rem}}
+@media(max-width:768px){.nav-links{display:none}.mobile-toggle{display:flex}.lang-selector{display:none}.form-row{grid-template-columns:1fr}.footer-main{grid-template-columns:1fr}.footer-bottom-inner{flex-direction:column;text-align:center}.cookie-banner{flex-direction:column;gap:1rem;text-align:center}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">SL</div>
+    <span class="nav-logo-text">SALA</span>
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="index.html#algorithm" data-i18n="nav_algorithm">Algorithm</a></li>
+      <li><a href="index.html#risk"      data-i18n="nav_risk">Risk Index</a></li>
+      <li><a href="index.html#impact"    data-i18n="nav_impact">Impact</a></li>
+      <li><a href="index.html#compliance" data-i18n="nav_compliance">Compliance</a></li>
+      <li><a href="index.html#roi"       data-i18n="nav_roi">ROI</a></li>
+      <li><a href="contato.html" class="nav-cta" data-i18n="nav_demo">Request Demo</a></li>
+    </ul>
+    <div class="lang-selector" id="langSelector">
+      <button class="lang-btn" id="langBtn" onclick="toggleLang()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="langLabel">EN</span>
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="lang-dropdown" id="langDropdown">
+        <button class="lang-option active" onclick="setLang('en')"><svg class="lang-flag" viewBox="0 0 22 14"><rect width="22" height="14" fill="#012169"/><path d="M0,0 L22,14 M22,0 L0,14" stroke="#fff" stroke-width="3"/><path d="M0,0 L22,14 M22,0 L0,14" stroke="#C8102E" stroke-width="2"/><path d="M11,0 V14 M0,7 H22" stroke="#fff" stroke-width="5"/><path d="M11,0 V14 M0,7 H22" stroke="#C8102E" stroke-width="3"/></svg>English</button>
+        <button class="lang-option" onclick="setLang('es')"><svg class="lang-flag" viewBox="0 0 22 14"><rect width="22" height="14" fill="#AA151B"/><rect y="3.5" width="22" height="7" fill="#F1BF00"/></svg>Español</button>
+        <button class="lang-option" onclick="setLang('pt')"><svg class="lang-flag" viewBox="0 0 22 14"><rect width="22" height="14" fill="#009C3B"/><rect x="7.5" width="14.5" height="14" fill="#FEDF00"/><circle cx="11" cy="7" r="3.2" fill="#002776"/></svg>Português</button>
+        <button class="lang-option" onclick="setLang('no')"><svg class="lang-flag" viewBox="0 0 22 14"><rect width="22" height="14" fill="#EF2B2D"/><rect x="5" width="4" height="14" fill="white"/><rect y="5" width="22" height="4" fill="white"/><rect x="6" width="2" height="14" fill="#002868"/><rect y="6" width="22" height="2" fill="#002868"/></svg>Norsk</button>
+      </div>
+    </div>
+    <button class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  <span data-i18n="back">Back</span>
+</a>
+
+<div class="page-hero">
+  <div class="page-hero-label" data-i18n="contact_label">Get in Touch</div>
+  <h1 data-i18n="contact_title">Request a <span class="gradient-text">Demo</span></h1>
+  <p data-i18n="contact_sub">Let us show you how SALA can transform occupational safety in your organization.</p>
+</div>
+
+<div class="contact-wrap">
+  <div class="contact-info">
+    <h2 data-i18n="info_title">Start the conversation</h2>
+    <p data-i18n="info_desc">Our team is ready to provide a personalized demonstration of the SALA platform. Fill out the form and we will get back to you within 24 hours.</p>
+    <div class="info-item">
+      <div class="info-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+      <div class="info-text"><h4>Email</h4><p><a href="mailto:paulo@barros.no">paulo@barros.no</a></p></div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+      <div class="info-text"><h4 data-i18n="info_loc">Location</h4><p>Larvik, Norway</p></div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+      <div class="info-text"><h4>Platform</h4><p><a href="https://sala.safelast.no" target="_blank">sala.safelast.no</a></p></div>
+    </div>
+  </div>
+
+  <div class="contact-form-box">
+    <form action="mailto:paulo@barros.no" method="post" enctype="text/plain">
+      <div class="form-row">
+        <div class="form-group"><label data-i18n="f_name">First Name</label><input type="text" name="firstname" required placeholder="Paulo"></div>
+        <div class="form-group"><label data-i18n="f_lname">Last Name</label><input type="text" name="lastname" required placeholder="Barros"></div>
+      </div>
+      <div class="form-group"><label data-i18n="f_email">Email</label><input type="email" name="email" required placeholder="paulo@company.no"></div>
+      <div class="form-group"><label data-i18n="f_company">Company</label><input type="text" name="company" placeholder="Company AS"></div>
+      <div class="form-group">
+        <label data-i18n="f_interest">Area of Interest</label>
+        <select name="interest">
+          <option value="" data-i18n="f_sel">Select…</option>
+          <option value="demo" data-i18n="f_opt1">Live Demo</option>
+          <option value="pricing" data-i18n="f_opt2">Pricing & Plans</option>
+          <option value="integration" data-i18n="f_opt3">Integration</option>
+          <option value="compliance" data-i18n="f_opt4">Compliance & Legal</option>
+          <option value="other" data-i18n="f_opt5">Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label data-i18n="f_msg">Message</label><textarea name="message" placeholder="…" data-i18n-ph="f_msg_ph"></textarea></div>
+      <button type="submit" class="btn-submit">
+        <span data-i18n="f_submit">Send Message</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-main">
+    <div class="footer-col">
+      <a href="index.html" class="footer-brand"><div class="footer-logo-icon">SL</div><span class="footer-brand-name">SALA</span></a>
+      <p class="footer-slogan" data-i18n="footer_slogan">AI-powered biomechanical risk intelligence for the Norwegian transport sector.</p>
+      <p class="footer-safelast">Part of <a href="https://sala.safelast.no" target="_blank">SafeLast</a> ecosystem</p>
+    </div>
+    <div class="footer-col"><h4 data-i18n="footer_ql">Quick Links</h4><ul><li><a href="index.html#algorithm" data-i18n="nav_algorithm">Algorithm</a></li><li><a href="index.html#risk" data-i18n="nav_risk">Risk Index</a></li><li><a href="index.html#impact" data-i18n="nav_impact">Impact</a></li><li><a href="index.html#compliance" data-i18n="nav_compliance">Compliance</a></li><li><a href="contato.html" data-i18n="footer_contact">Contact</a></li></ul></div>
+    <div class="footer-col"><h4 data-i18n="footer_social">Social Media</h4>
+      <a class="footer-social-link" href="https://www.linkedin.com/in/paulofernandodebarros" target="_blank"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
+      <a class="footer-social-link" href="https://x.com/paulofdbarros" target="_blank"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X (Twitter)</a>
+      <a class="footer-social-link" href="https://barros.no" target="_blank"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>barros.no</a>
+    </div>
+    <div class="footer-col"><h4 data-i18n="footer_legal">Legal</h4><ul><li><a href="privacidade.html" data-i18n="footer_privacy">Privacy Policy</a></li><li><a href="termos.html" data-i18n="footer_terms">Terms of Use</a></li><li><a href="cookies.html" data-i18n="footer_cookies">Cookie Policy</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><div class="footer-bottom-inner"><span class="footer-copyright" data-i18n="footer_copy">© 2026 SALA — Safe-Load Analytics. All rights reserved.</span><span class="footer-devlink"><span data-i18n="footer_dev">Developed by</span> <a href="https://ds.barros.no" target="_blank">Digital Solutions</a></span></div></div>
+</footer>
+
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-icon">🍪</div>
+  <div class="cookie-content"><h4 data-i18n="ck_title">We use cookies</h4><p id="ck_desc">We use cookies to improve your experience. See our <a href="cookies.html">Cookie Policy</a>.</p></div>
+  <div class="cookie-actions">
+    <button class="cookie-btn cookie-btn-reject" onclick="cookieChoice('reject')" data-i18n="ck_reject">Reject</button>
+    <button class="cookie-btn cookie-btn-customize" onclick="location.href='cookies.html'" data-i18n="ck_custom">Customize</button>
+    <button class="cookie-btn cookie-btn-accept" onclick="cookieChoice('accept')" data-i18n="ck_accept">Accept All</button>
+  </div>
+</div>
+
+<script>
+const T={
+  en:{nav_algorithm:"Algorithm",nav_risk:"Risk Index",nav_impact:"Impact",nav_compliance:"Compliance",nav_roi:"ROI",nav_demo:"Request Demo",back:"Back",contact_label:"Get in Touch",contact_title:"Request a <span class='gradient-text'>Demo</span>",contact_sub:"Let us show you how SALA can transform occupational safety in your organization.",info_title:"Start the conversation",info_desc:"Our team is ready to provide a personalized demonstration. Fill out the form and we will get back to you within 24 hours.",info_loc:"Location",f_name:"First Name",f_lname:"Last Name",f_email:"Email",f_company:"Company",f_interest:"Area of Interest",f_sel:"Select…",f_opt1:"Live Demo",f_opt2:"Pricing & Plans",f_opt3:"Integration",f_opt4:"Compliance & Legal",f_opt5:"Other",f_msg:"Message",f_msg_ph:"Tell us about your company and specific needs…",f_submit:"Send Message",footer_slogan:"AI-powered biomechanical risk intelligence for the Norwegian transport sector.",footer_ql:"Quick Links",footer_social:"Social Media",footer_legal:"Legal",footer_contact:"Contact",footer_privacy:"Privacy Policy",footer_terms:"Terms of Use",footer_cookies:"Cookie Policy",footer_copy:"© 2026 SALA — Safe-Load Analytics. All rights reserved.",footer_dev:"Developed by",ck_title:"We use cookies",ck_desc:'We use cookies to improve your experience. See our <a href="cookies.html">Cookie Policy</a>.',ck_reject:"Reject",ck_custom:"Customize",ck_accept:"Accept All"},
+  es:{nav_algorithm:"Algoritmo",nav_risk:"Índice de Riesgo",nav_impact:"Impacto",nav_compliance:"Cumplimiento",nav_roi:"ROI",nav_demo:"Solicitar Demo",back:"Volver",contact_label:"Contáctenos",contact_title:"Solicitar una <span class='gradient-text'>Demo</span>",contact_sub:"Permítanos mostrarle cómo SALA puede transformar la seguridad ocupacional en su organización.",info_title:"Iniciemos la conversación",info_desc:"Nuestro equipo está listo para ofrecer una demostración personalizada. Complete el formulario y le responderemos en 24 horas.",info_loc:"Ubicación",f_name:"Nombre",f_lname:"Apellido",f_email:"Correo",f_company:"Empresa",f_interest:"Área de Interés",f_sel:"Seleccionar…",f_opt1:"Demo en vivo",f_opt2:"Precios y planes",f_opt3:"Integración",f_opt4:"Cumplimiento legal",f_opt5:"Otro",f_msg:"Mensaje",f_msg_ph:"Cuéntenos sobre su empresa y necesidades específicas…",f_submit:"Enviar Mensaje",footer_slogan:"Inteligencia de riesgo biomecánico con IA para el transporte noruego.",footer_ql:"Enlaces Rápidos",footer_social:"Redes Sociales",footer_legal:"Legal",footer_contact:"Contacto",footer_privacy:"Política de Privacidad",footer_terms:"Términos de Uso",footer_cookies:"Política de Cookies",footer_copy:"© 2026 SALA — Safe-Load Analytics. Todos los derechos reservados.",footer_dev:"Desarrollado por",ck_title:"Usamos cookies",ck_desc:'Usamos cookies para mejorar su experiencia. Consulte nuestra <a href="cookies.html">Política de Cookies</a>.',ck_reject:"Rechazar",ck_custom:"Personalizar",ck_accept:"Aceptar Todo"},
+  pt:{nav_algorithm:"Algoritmo",nav_risk:"Índice de Risco",nav_impact:"Impacto",nav_compliance:"Conformidade",nav_roi:"ROI",nav_demo:"Solicitar Demo",back:"Voltar",contact_label:"Entre em Contato",contact_title:"Solicitar uma <span class='gradient-text'>Demo</span>",contact_sub:"Deixe-nos mostrar como o SALA pode transformar a segurança ocupacional na sua organização.",info_title:"Inicie a conversa",info_desc:"Nossa equipe está pronta para uma demonstração personalizada. Preencha o formulário e retornaremos em 24 horas.",info_loc:"Localização",f_name:"Nome",f_lname:"Sobrenome",f_email:"E-mail",f_company:"Empresa",f_interest:"Área de Interesse",f_sel:"Selecionar…",f_opt1:"Demo ao vivo",f_opt2:"Preços e planos",f_opt3:"Integração",f_opt4:"Conformidade legal",f_opt5:"Outro",f_msg:"Mensagem",f_msg_ph:"Fale sobre sua empresa e necessidades específicas…",f_submit:"Enviar Mensagem",footer_slogan:"Inteligência de risco biomecânico com IA para o transporte norueguês.",footer_ql:"Links Rápidos",footer_social:"Redes Sociais",footer_legal:"Legal",footer_contact:"Contato",footer_privacy:"Política de Privacidade",footer_terms:"Termos de Uso",footer_cookies:"Política de Cookies",footer_copy:"© 2026 SALA — Safe-Load Analytics. Todos os direitos reservados.",footer_dev:"Desenvolvido por",ck_title:"Usamos cookies",ck_desc:'Usamos cookies para melhorar sua experiência. Consulte nossa <a href="cookies.html">Política de Cookies</a>.',ck_reject:"Rejeitar",ck_custom:"Personalizar",ck_accept:"Aceitar Tudo"},
+  no:{nav_algorithm:"Algoritme",nav_risk:"Risikoindeks",nav_impact:"Innvirkning",nav_compliance:"Samsvar",nav_roi:"ROI",nav_demo:"Be om demo",back:"Tilbake",contact_label:"Ta kontakt",contact_title:"Be om en <span class='gradient-text'>demo</span>",contact_sub:"La oss vise deg hvordan SALA kan transformere yrkessikkerheten i din organisasjon.",info_title:"Start samtalen",info_desc:"Teamet vårt er klart til å gi en personlig demonstrasjon. Fyll ut skjemaet, så svarer vi deg innen 24 timer.",info_loc:"Plassering",f_name:"Fornavn",f_lname:"Etternavn",f_email:"E-post",f_company:"Bedrift",f_interest:"Interesseområde",f_sel:"Velg…",f_opt1:"Live demo",f_opt2:"Priser og planer",f_opt3:"Integrasjon",f_opt4:"Samsvar og juridisk",f_opt5:"Annet",f_msg:"Melding",f_msg_ph:"Fortell oss om bedriften din og spesifikke behov…",f_submit:"Send melding",footer_slogan:"KI-drevet biomekanisk risikoanalyse for norsk transportsektor.",footer_ql:"Hurtiglenker",footer_social:"Sosiale medier",footer_legal:"Juridisk",footer_contact:"Kontakt",footer_privacy:"Personvernerklæring",footer_terms:"Bruksvilkår",footer_cookies:"Informasjonskapselpolicy",footer_copy:"© 2026 SALA — Safe-Load Analytics. Alle rettigheter forbeholdt.",footer_dev:"Utviklet av",ck_title:"Vi bruker informasjonskapsler",ck_desc:'Vi bruker informasjonskapsler for å forbedre opplevelsen din. Se vår <a href="cookies.html">informasjonskapsel-policy</a>.',ck_reject:"Avvis",ck_custom:"Tilpass",ck_accept:"Godta alle"}
+};
+let currentLang=localStorage.getItem('sala_lang')||'en';
+function setLang(l){currentLang=l;localStorage.setItem('sala_lang',l);applyLang();closeLang()}
+function applyLang(){const t=T[currentLang];document.documentElement.lang=currentLang;document.getElementById('langLabel').textContent=currentLang.toUpperCase();document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(t[k]!==undefined)el.innerHTML=t[k]});document.getElementById('ck_desc').innerHTML=t.ck_desc;document.querySelectorAll('[data-i18n-ph]').forEach(el=>{const k=el.dataset.i18nPh;if(t[k])el.placeholder=t[k]});document.querySelectorAll('.lang-option').forEach(btn=>btn.classList.toggle('active',btn.getAttribute('onclick').includes(`'${currentLang}'`)))}
+function toggleLang(){document.getElementById('langDropdown').classList.toggle('open');document.getElementById('langBtn').classList.toggle('open')}
+function closeLang(){document.getElementById('langDropdown').classList.remove('open');document.getElementById('langBtn').classList.remove('open')}
+document.addEventListener('click',e=>{if(!document.getElementById('langSelector').contains(e.target))closeLang()});
+function cookieChoice(c){localStorage.setItem('sala_cookie',c);document.getElementById('cookieBanner').classList.remove('visible')}
+if(!localStorage.getItem('sala_cookie')){setTimeout(()=>document.getElementById('cookieBanner').classList.add('visible'),1200)}
+applyLang();
+</script>
+</body>
+</html>
