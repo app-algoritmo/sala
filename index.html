@@ -1135,204 +1135,202 @@ footer {
   color: #e8c96e;
 }
 
-/* Cookie Banner — barros.no style: full-width bottom bar */
+/* ═══════════════════════════════════════════
+   Cookie Banner — barros.no model (adapted)
+═══════════════════════════════════════════ */
 .cookie-banner {
   position: fixed;
-  bottom: -220px;
+  bottom: 0;
   left: 0;
   right: 0;
-  width: 100%;
-  background: rgba(8, 15, 30, 0.97);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-top: 1px solid rgba(0, 212, 170, 0.18);
-  z-index: 9000;
-  transition: bottom 0.55s cubic-bezier(0.34, 1.2, 0.64, 1);
+  z-index: 9999;
+  background: #0d1526;
+  border-top: 2px solid var(--accent);
+  padding: 16px 28px 14px;
+  font-family: 'Inter', sans-serif;
+  transform: translateY(100%);
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.cookie-banner.visible {
-  bottom: 0;
+.cookie-banner.show {
+  transform: translateY(0);
 }
 
-.cookie-banner-inner {
+/* Top row */
+.cb-top {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1rem 2rem;
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-}
-
-/* Left: icon + title */
-.cookie-banner-lead {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  flex-shrink: 0;
-}
-
-.cookie-banner-lead .cookie-icon-wrap {
-  font-size: 1.2rem;
-  line-height: 1;
-}
-
-.cookie-banner-lead h4 {
-  font-size: 0.72rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: var(--accent);
-  white-space: nowrap;
-}
-
-/* Centre: description + toggles */
-.cookie-banner-body {
-  flex: 1;
-  min-width: 0;
-}
-
-.cookie-banner-body p {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  line-height: 1.5;
-  margin-bottom: 0.6rem;
-}
-
-.cookie-banner-body p a {
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.cookie-banner-body p a:hover {
-  text-decoration: underline;
-}
-
-.cookie-toggles {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
+  justify-content: space-between;
+  gap: 20px;
   flex-wrap: wrap;
 }
 
-.cookie-toggle-item {
+.cb-left {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
-}
-
-.cookie-toggle-item span {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-/* Toggle switch */
-.toggle-switch {
-  position: relative;
-  display: inline-block;
-  width: 34px;
-  height: 18px;
+  gap: 10px;
   flex-shrink: 0;
 }
 
-.toggle-switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-  position: absolute;
+.cb-icon {
+  font-size: 18px;
 }
 
-.toggle-track {
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 9px;
-  cursor: pointer;
-  transition: background 0.25s ease, border-color 0.25s ease;
-}
-
-.toggle-track::after {
-  content: '';
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 12px;
-  height: 12px;
-  background: var(--text-dim);
-  border-radius: 50%;
-  transition: transform 0.25s ease, background 0.25s ease;
-}
-
-.toggle-switch input:checked + .toggle-track {
-  background: rgba(0, 212, 170, 0.25);
-  border-color: rgba(0, 212, 170, 0.5);
-}
-
-.toggle-switch input:checked + .toggle-track::after {
-  transform: translateX(16px);
-  background: var(--accent);
-}
-
-.toggle-switch input:disabled + .toggle-track {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* Right: action buttons */
-.cookie-banner-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-shrink: 0;
-}
-
-.cookie-btn {
-  padding: 0.5rem 1.1rem;
-  border-radius: 8px;
-  font-size: 0.78rem;
+.cb-title {
+  font-size: 13px;
   font-weight: 700;
-  font-family: 'Inter', sans-serif;
-  cursor: pointer;
-  transition: all 0.22s ease;
-  white-space: nowrap;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.12em;
+  color: var(--accent);
   text-transform: uppercase;
-  border: none;
 }
 
-.cookie-btn-save {
-  background: transparent;
+.cb-desc {
+  font-size: 12px;
   color: var(--text-muted);
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  line-height: 1.55;
+  max-width: 420px;
+  flex: 1;
+  min-width: 200px;
 }
 
-.cookie-btn-save:hover {
-  border-color: rgba(255, 255, 255, 0.25) !important;
-  color: var(--text);
+.cb-desc a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s;
 }
 
-.cookie-btn-accept {
+.cb-desc a:hover {
+  color: #00ffe6;
+}
+
+.cb-btns {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Buttons */
+.cb-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.cb-btn-accept {
   background: var(--gradient-1);
   color: var(--primary);
+  padding: 8px 20px;
+  border-radius: 6px;
 }
 
-.cookie-btn-accept:hover {
+.cb-btn-accept:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 18px var(--accent-glow);
 }
 
-.cookie-btn-reject {
+.cb-btn-save {
   background: transparent;
-  color: var(--text-dim);
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  color: var(--accent);
+  border: 1.5px solid rgba(0, 212, 170, 0.4) !important;
+  padding: 7px 18px;
+  border-radius: 6px;
 }
 
-.cookie-btn-reject:hover {
+.cb-btn-save:hover {
+  background: rgba(0, 212, 170, 0.08);
+  border-color: var(--accent) !important;
+}
+
+.cb-btn-reject {
+  background: transparent;
+  color: var(--text-dim);
+  padding: 7px 10px;
+  font-weight: 500;
+}
+
+.cb-btn-reject:hover {
   color: var(--text-muted);
+}
+
+/* Bottom row — toggles */
+.cb-bottom {
+  max-width: 1200px;
+  margin: 10px auto 0;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.cb-toggle-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cb-toggle-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Toggle switch */
+.cb-toggle {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.cb-toggle input {
+  display: none;
+}
+
+.cb-track {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: #374151;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.cb-track::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.2s ease;
+}
+
+.cb-toggle input:checked + .cb-track {
+  background: var(--accent);
+}
+
+.cb-toggle input:checked + .cb-track::after {
+  transform: translateX(16px);
+}
+
+.cb-toggle input:disabled + .cb-track {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 /* Mobile language strip — shown only in mobile nav */
@@ -1542,20 +1540,15 @@ footer {
     text-align: center;
   }
 
-  .cookie-banner-inner {
+  .cb-top {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.85rem;
-    padding: 1.25rem 1.25rem 1.5rem;
+    gap: 12px;
   }
 
-  .cookie-banner-actions {
+  .cb-btns {
     width: 100%;
     justify-content: flex-end;
-  }
-
-  .cookie-toggles {
-    gap: 1rem;
   }
 }
 
@@ -2134,51 +2127,45 @@ footer {
   </div>
 </footer>
 
-<!-- Cookie Banner — barros.no style -->
-<div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Cookie consent">
-  <div class="cookie-banner-inner">
-
-    <!-- Left: icon + title -->
-    <div class="cookie-banner-lead">
-      <span class="cookie-icon-wrap" aria-hidden="true">🍪</span>
-      <h4 data-i18n="cookie_title">Privacy &amp; Cookies</h4>
+<!-- Cookie Banner — barros.no model -->
+<div id="cookieBanner" role="region" aria-label="Cookie consent">
+  <div class="cb-top">
+    <div class="cb-left">
+      <span class="cb-icon" aria-hidden="true">🍪</span>
+      <span class="cb-title" id="cb-title-lbl">Privacy &amp; Cookies</span>
     </div>
-
-    <!-- Centre: description + category toggles -->
-    <div class="cookie-banner-body">
-      <p id="cookieBannerDesc">We use cookies to analyse traffic and personalise content. Choose which to accept. See our <a href="cookies.html" data-i18n="cookie_policy_link">Cookie Policy</a>.</p>
-      <div class="cookie-toggles">
-        <div class="cookie-toggle-item">
-          <label class="toggle-switch" aria-label="Necessary cookies (always on)">
-            <input type="checkbox" checked disabled>
-            <span class="toggle-track"></span>
-          </label>
-          <span data-i18n="cookie_cat_necessary">Necessary</span>
-        </div>
-        <div class="cookie-toggle-item">
-          <label class="toggle-switch" aria-label="Analytics cookies">
-            <input type="checkbox" id="toggleAnalytics" checked>
-            <span class="toggle-track"></span>
-          </label>
-          <span data-i18n="cookie_cat_analytics">Analytics</span>
-        </div>
-        <div class="cookie-toggle-item">
-          <label class="toggle-switch" aria-label="Marketing cookies">
-            <input type="checkbox" id="toggleMarketing">
-            <span class="toggle-track"></span>
-          </label>
-          <span data-i18n="cookie_cat_marketing">Marketing</span>
-        </div>
-      </div>
+    <div class="cb-desc" id="cb-desc-lbl">
+      We use cookies to analyse traffic and personalise content. Choose which to accept.
+      See our <a href="cookies.html">Cookie Policy</a>.
     </div>
-
-    <!-- Right: action buttons -->
-    <div class="cookie-banner-actions">
-      <button class="cookie-btn cookie-btn-save"   data-i18n="cookie_save"   onclick="handleCookieSave()">Save Choice</button>
-      <button class="cookie-btn cookie-btn-accept" data-i18n="cookie_accept" onclick="handleCookieAccept()">Accept All</button>
-      <button class="cookie-btn cookie-btn-reject" data-i18n="cookie_reject" onclick="handleCookieChoice('reject')">Reject</button>
+    <div class="cb-btns">
+      <button class="cb-btn cb-btn-save"   onclick="handleCookieSave()"          id="cb-save-lbl">Save Choice</button>
+      <button class="cb-btn cb-btn-accept" onclick="handleCookieAccept()"         id="cb-accept-lbl">Accept All</button>
+      <button class="cb-btn cb-btn-reject" onclick="handleCookieChoice('reject')" id="cb-reject-lbl">Reject</button>
     </div>
-
+  </div>
+  <div class="cb-bottom">
+    <div class="cb-toggle-item">
+      <label class="cb-toggle" aria-label="Necessary cookies">
+        <input type="checkbox" checked disabled>
+        <div class="cb-track"></div>
+      </label>
+      <span class="cb-toggle-label" id="cb-necessary-lbl">Necessary</span>
+    </div>
+    <div class="cb-toggle-item">
+      <label class="cb-toggle" aria-label="Analytics cookies">
+        <input type="checkbox" checked id="toggleAnalytics">
+        <div class="cb-track"></div>
+      </label>
+      <span class="cb-toggle-label" id="cb-analytics-lbl">Analytics</span>
+    </div>
+    <div class="cb-toggle-item">
+      <label class="cb-toggle" aria-label="Marketing cookies">
+        <input type="checkbox" id="toggleMarketing">
+        <div class="cb-track"></div>
+      </label>
+      <span class="cb-toggle-label" id="cb-marketing-lbl">Marketing</span>
+    </div>
   </div>
 </div>
 
@@ -2865,12 +2852,6 @@ function applyLang(lang) {
     }
   });
 
-  // Update cookie banner description (contains a link — handled separately)
-  const cookieDesc = document.getElementById('cookieBannerDesc');
-  if (cookieDesc) {
-    cookieDesc.innerHTML = t.cookie_desc;
-  }
-
   // Update lang button label and flag
   document.getElementById('langLabel').textContent = lang.toUpperCase();
   document.getElementById('currentFlag').innerHTML = flagSVGs[lang];
@@ -2886,6 +2867,9 @@ function applyLang(lang) {
   document.querySelectorAll('.mobile-lang-strip-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
+
+  // Sync cookie banner labels
+  updateCookieBannerLang(lang);
 }
 
 function setLang(lang) {
@@ -2953,45 +2937,104 @@ applyLang(currentLang);
 
 // ─── Cookie Banner ────────────────────────────────────────────────────────────
 
+// Per-language cookie banner strings — mirrors barros.no cookieI18n pattern
+const cookieI18n = {
+  en: {
+    title:     'Privacy & Cookies',
+    desc:      'We use cookies to analyse traffic and personalise content. Choose which to accept. See our <a href="cookies.html">Cookie Policy</a>.',
+    save:      'Save Choice',
+    accept:    'Accept All',
+    reject:    'Reject',
+    necessary: 'Necessary',
+    analytics: 'Analytics',
+    marketing: 'Marketing'
+  },
+  es: {
+    title:     'Privacidad & Cookies',
+    desc:      'Utilizamos cookies para analizar el tráfico y personalizar el contenido. Elija cuáles aceptar. Consulte nuestra <a href="cookies.html">Política de Cookies</a>.',
+    save:      'Guardar Elección',
+    accept:    'Aceptar Todo',
+    reject:    'Rechazar',
+    necessary: 'Necesarias',
+    analytics: 'Analytics',
+    marketing: 'Marketing'
+  },
+  pt: {
+    title:     'Privacidade & Cookies',
+    desc:      'Utilizamos cookies para analisar o tráfego e personalizar o conteúdo. Você pode escolher quais aceitar. Leia nossa <a href="cookies.html">Política de Cookies</a>.',
+    save:      'Salvar Escolha',
+    accept:    'Aceitar Tudo',
+    reject:    'Recusar',
+    necessary: 'Necessários',
+    analytics: 'Analytics',
+    marketing: 'Marketing'
+  },
+  no: {
+    title:     'Personvern & Cookies',
+    desc:      'Vi bruker informasjonskapsler for å analysere trafikk og tilpasse innhold. Velg hvilke du vil godta. Se vår <a href="cookies.html">informasjonskapsel-policy</a>.',
+    save:      'Lagre valg',
+    accept:    'Godta alle',
+    reject:    'Avvis',
+    necessary: 'Nødvendige',
+    analytics: 'Analyse',
+    marketing: 'Markedsføring'
+  }
+};
+
+function updateCookieBannerLang(lang) {
+  const c = cookieI18n[lang] || cookieI18n.en;
+  document.getElementById('cb-title-lbl').textContent     = c.title;
+  document.getElementById('cb-desc-lbl').innerHTML        = c.desc;
+  document.getElementById('cb-save-lbl').textContent      = c.save;
+  document.getElementById('cb-accept-lbl').textContent    = c.accept;
+  document.getElementById('cb-reject-lbl').textContent    = c.reject;
+  document.getElementById('cb-necessary-lbl').textContent = c.necessary;
+  document.getElementById('cb-analytics-lbl').textContent = c.analytics;
+  document.getElementById('cb-marketing-lbl').textContent = c.marketing;
+}
+
 function hideCookieBanner() {
-  document.getElementById('cookieBanner').classList.remove('visible');
+  document.getElementById('cookieBanner').classList.remove('show');
 }
 
 function handleCookieAccept() {
-  localStorage.setItem('sala_cookie', 'all');
-  localStorage.setItem('sala_cookie_analytics', 'true');
-  localStorage.setItem('sala_cookie_marketing', 'true');
+  localStorage.setItem('sala_cookie', JSON.stringify({ necessary: true, analytics: true, marketing: true }));
   hideCookieBanner();
 }
 
 function handleCookieSave() {
-  const analytics = document.getElementById('toggleAnalytics').checked;
-  const marketing = document.getElementById('toggleMarketing').checked;
-  localStorage.setItem('sala_cookie', 'custom');
-  localStorage.setItem('sala_cookie_analytics', analytics);
-  localStorage.setItem('sala_cookie_marketing', marketing);
+  const prefs = {
+    necessary: true,
+    analytics: document.getElementById('toggleAnalytics').checked,
+    marketing: document.getElementById('toggleMarketing').checked
+  };
+  localStorage.setItem('sala_cookie', JSON.stringify(prefs));
   hideCookieBanner();
 }
 
 function handleCookieChoice(choice) {
-  localStorage.setItem('sala_cookie', choice);
-  localStorage.setItem('sala_cookie_analytics', 'false');
-  localStorage.setItem('sala_cookie_marketing', 'false');
+  localStorage.setItem('sala_cookie', JSON.stringify({ necessary: true, analytics: false, marketing: false }));
   hideCookieBanner();
 }
 
-// Restore saved toggle states if they exist
-const savedAnalytics = localStorage.getItem('sala_cookie_analytics');
-const savedMarketing = localStorage.getItem('sala_cookie_marketing');
-if (savedAnalytics !== null) document.getElementById('toggleAnalytics').checked = savedAnalytics === 'true';
-if (savedMarketing !== null) document.getElementById('toggleMarketing').checked = savedMarketing === 'true';
-
-// Show banner if no choice has been made yet
-if (!localStorage.getItem('sala_cookie')) {
-  setTimeout(() => {
-    document.getElementById('cookieBanner').classList.add('visible');
-  }, 1200);
+// Restore saved toggle states
+const savedConsent = localStorage.getItem('sala_cookie');
+if (savedConsent) {
+  try {
+    const prefs = JSON.parse(savedConsent);
+    document.getElementById('toggleAnalytics').checked = prefs.analytics ?? true;
+    document.getElementById('toggleMarketing').checked = prefs.marketing ?? false;
+  } catch (e) { /* legacy string value — ignore */ }
 }
+
+// Show banner after 1.2s if no choice made yet
+window.addEventListener('DOMContentLoaded', () => {
+  if (!localStorage.getItem('sala_cookie')) {
+    setTimeout(() => {
+      document.getElementById('cookieBanner').classList.add('show');
+    }, 1200);
+  }
+});
 </script>
 </body>
 </html>
