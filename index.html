@@ -150,6 +150,13 @@ nav.scrolled {
 
 .nav-cta::after { display: none !important; }
 
+/* Nav actions — wraps lang selector + mobile toggle */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .mobile-toggle {
   display: none;
   flex-direction: column;
@@ -165,6 +172,101 @@ nav.scrolled {
   height: 2px;
   background: var(--text);
   transition: all 0.3s;
+}
+
+/* Language Selector */
+.lang-selector {
+  position: relative;
+}
+
+.lang-selector-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.85rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.lang-selector-btn:hover,
+.lang-selector-btn.open {
+  border-color: rgba(0, 212, 170, 0.4);
+  color: var(--accent);
+  background: rgba(0, 212, 170, 0.06);
+}
+
+.lang-selector-btn svg {
+  transition: transform 0.25s ease;
+}
+
+.lang-selector-btn.open svg.chevron {
+  transform: rotate(180deg);
+}
+
+.lang-flag {
+  width: 18px;
+  height: 12px;
+  border-radius: 2px;
+  overflow: hidden;
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 150px;
+  background: #0d1e36;
+  border: 1px solid rgba(0, 212, 170, 0.12);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 200;
+}
+
+.lang-dropdown.open {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+  padding: 0.7rem 1rem;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-family: 'Inter', sans-serif;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lang-option:hover {
+  background: rgba(0, 212, 170, 0.06);
+  color: var(--text);
+}
+
+.lang-option.active {
+  color: var(--accent);
+  background: rgba(0, 212, 170, 0.08);
 }
 
 /* Hero */
@@ -257,7 +359,8 @@ nav.scrolled {
   animation: fadeInUp 0.8s ease 0.1s both;
 }
 
-.hero h1 .gradient-text {
+.hero h1 .gradient-text,
+.gradient-text {
   background: var(--gradient-1);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -881,59 +984,269 @@ section {
   position: relative;
 }
 
-/* Footer */
+/* Footer — 4 Columns */
 footer {
-  padding: 3rem 2rem;
-  border-top: 1px solid var(--border);
   background: var(--surface);
+  border-top: 1px solid var(--border);
 }
 
-.footer-inner {
+.footer-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4.5rem 2rem 3rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  text-decoration: none;
+}
+
+.footer-logo-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--gradient-1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.footer-brand-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 2px;
+}
+
+.footer-slogan {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  max-width: 280px;
+  margin-bottom: 1.5rem;
+}
+
+.footer-safelast {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+
+.footer-safelast a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-safelast a:hover {
+  color: #00ffe6;
+}
+
+.footer-col h4 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+}
+
+.footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.footer-col ul a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.3s;
+}
+
+.footer-col ul a:hover {
+  color: var(--accent);
+}
+
+.footer-social-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.3s;
+  margin-bottom: 0.65rem;
+}
+
+.footer-social-link:hover {
+  color: var(--accent);
+}
+
+.footer-social-link svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding: 1.4rem 2rem;
+}
+
+.footer-bottom-inner {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-.footer-logo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.footer-logo-icon {
-  width: 28px;
-  height: 28px;
-  background: var(--gradient-1);
-  border-radius: 7px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 0.65rem;
-  color: var(--primary);
-}
-
-.footer-text {
-  font-size: 0.85rem;
+.footer-copyright {
+  font-size: 0.8rem;
   color: var(--text-dim);
 }
 
-.footer-links {
-  display: flex;
-  gap: 1.5rem;
+.footer-dev-link {
+  font-size: 0.8rem;
+  color: var(--text-dim);
 }
 
-.footer-links a {
-  color: var(--text-muted);
+.footer-dev-link a {
+  color: #D4AF37;
   text-decoration: none;
-  font-size: 0.85rem;
   transition: color 0.3s;
 }
 
-.footer-links a:hover {
+.footer-dev-link a:hover {
+  color: #e8c96e;
+}
+
+/* Cookie Banner */
+.cookie-banner {
+  position: fixed;
+  bottom: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 2rem);
+  max-width: 940px;
+  background: linear-gradient(135deg, #0c1c34 0%, #0f2040 100%);
+  border: 1px solid rgba(0, 212, 170, 0.18);
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  z-index: 9000;
+  box-shadow: 0 -4px 60px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(0, 212, 170, 0.04);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  transition: bottom 0.6s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+.cookie-banner.visible {
+  bottom: 1.5rem;
+}
+
+.cookie-banner-icon {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: rgba(0, 212, 170, 0.1);
+  border: 1px solid rgba(0, 212, 170, 0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cookie-banner-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.cookie-banner-content h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.3rem;
+}
+
+.cookie-banner-content p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.cookie-banner-content p a {
   color: var(--accent);
+  text-decoration: none;
+}
+
+.cookie-banner-content p a:hover {
+  text-decoration: underline;
+}
+
+.cookie-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.cookie-btn {
+  padding: 0.55rem 1.1rem;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  border: none;
+}
+
+.cookie-btn-reject {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border) !important;
+}
+
+.cookie-btn-reject:hover {
+  border-color: rgba(255,255,255,0.2) !important;
+  color: var(--text);
+}
+
+.cookie-btn-customize {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid rgba(0, 212, 170, 0.3) !important;
+}
+
+.cookie-btn-customize:hover {
+  background: rgba(0, 212, 170, 0.07);
+}
+
+.cookie-btn-accept {
+  background: var(--gradient-1);
+  color: var(--primary);
+}
+
+.cookie-btn-accept:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px var(--accent-glow);
 }
 
 /* Animations */
@@ -965,37 +1278,52 @@ footer {
     grid-template-columns: 1fr;
     text-align: center;
   }
+
   .hero-description {
     margin: 0 auto 2.5rem;
   }
+
   .hero-actions {
     justify-content: center;
   }
+
   .hero-visual {
     order: -1;
   }
+
   .spine-visual {
     width: 240px;
     height: 360px;
   }
+
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .algo-grid {
     grid-template-columns: 1fr;
   }
+
   .risk-display {
     grid-template-columns: 1fr;
     text-align: center;
   }
+
   .impact-grid {
     grid-template-columns: 1fr;
   }
+
   .compliance-grid {
     grid-template-columns: 1fr;
   }
+
   .roi-grid {
     grid-template-columns: 1fr;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
   }
 }
 
@@ -1012,46 +1340,79 @@ footer {
     border-bottom: 1px solid var(--border);
     gap: 1rem;
   }
+
   .nav-links.active {
     display: flex;
   }
+
   .mobile-toggle {
     display: flex;
   }
+
+  .lang-selector {
+    display: none;
+  }
+
   .hero {
     padding: 7rem 1.5rem 3rem;
   }
+
   .hero h1 {
     font-size: 2rem;
   }
+
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
+
   .stat-number {
     font-size: 2rem;
   }
+
   section {
     padding: 4rem 1.5rem;
   }
+
   .cta-inner {
     padding: 3rem 1.5rem;
   }
+
   .cta-buttons {
     flex-direction: column;
     align-items: center;
   }
-  .footer-inner {
-    flex-direction: column;
-    gap: 1rem;
-    text-align: center;
-  }
+
   .risk-circle {
     width: 200px;
     height: 200px;
   }
+
   .risk-number {
     font-size: 2.5rem;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 3rem 1.5rem 2rem;
+  }
+
+  .footer-bottom-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .cookie-banner {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .cookie-banner-actions {
+    justify-content: center;
+    flex-wrap: wrap;
   }
 }
 
@@ -1083,17 +1444,80 @@ footer {
     <div class="nav-logo-icon">SL</div>
     <span class="nav-logo-text">SALA</span>
   </a>
+
   <ul class="nav-links" id="navLinks">
-    <li><a href="#algorithm">Algorithm</a></li>
-    <li><a href="#risk">Risk Index</a></li>
-    <li><a href="#impact">Impact</a></li>
-    <li><a href="#compliance">Compliance</a></li>
-    <li><a href="#roi">ROI</a></li>
-    <li><a href="#contact" class="nav-cta">Request Demo</a></li>
+    <li><a href="#algorithm" data-i18n="nav_algorithm">Algorithm</a></li>
+    <li><a href="#risk"      data-i18n="nav_risk">Risk Index</a></li>
+    <li><a href="#impact"   data-i18n="nav_impact">Impact</a></li>
+    <li><a href="#compliance" data-i18n="nav_compliance">Compliance</a></li>
+    <li><a href="#roi"      data-i18n="nav_roi">ROI</a></li>
+    <li><a href="#contact"  class="nav-cta" data-i18n="nav_demo">Request Demo</a></li>
   </ul>
-  <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
-    <span></span><span></span><span></span>
-  </button>
+
+  <div class="nav-actions">
+
+    <!-- Language Selector -->
+    <div class="lang-selector" id="langSelector">
+      <button class="lang-selector-btn" id="langSelectorBtn" aria-haspopup="listbox" aria-expanded="false">
+        <!-- Current flag injected by JS -->
+        <svg class="lang-flag" id="currentFlag" viewBox="0 0 22 14" aria-hidden="true">
+          <rect width="22" height="14" fill="#012169"/>
+          <path d="M0,0 L22,14 M22,0 L0,14" stroke="#fff" stroke-width="3"/>
+          <path d="M0,0 L22,14 M22,0 L0,14" stroke="#C8102E" stroke-width="2"/>
+          <path d="M11,0 V14 M0,7 H22" stroke="#fff" stroke-width="5"/>
+          <path d="M11,0 V14 M0,7 H22" stroke="#C8102E" stroke-width="3"/>
+        </svg>
+        <span id="langLabel">EN</span>
+        <svg class="chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </button>
+
+      <div class="lang-dropdown" id="langDropdown" role="listbox">
+        <button class="lang-option active" data-lang="en" role="option" aria-selected="true">
+          <svg class="lang-flag" viewBox="0 0 22 14" aria-hidden="true">
+            <rect width="22" height="14" fill="#012169"/>
+            <path d="M0,0 L22,14 M22,0 L0,14" stroke="#fff" stroke-width="3"/>
+            <path d="M0,0 L22,14 M22,0 L0,14" stroke="#C8102E" stroke-width="2"/>
+            <path d="M11,0 V14 M0,7 H22" stroke="#fff" stroke-width="5"/>
+            <path d="M11,0 V14 M0,7 H22" stroke="#C8102E" stroke-width="3"/>
+          </svg>
+          English
+        </button>
+        <button class="lang-option" data-lang="es" role="option" aria-selected="false">
+          <svg class="lang-flag" viewBox="0 0 22 14" aria-hidden="true">
+            <rect width="22" height="14" fill="#AA151B"/>
+            <rect y="3.5" width="22" height="7" fill="#F1BF00"/>
+          </svg>
+          Español
+        </button>
+        <button class="lang-option" data-lang="pt" role="option" aria-selected="false">
+          <svg class="lang-flag" viewBox="0 0 22 14" aria-hidden="true">
+            <rect width="22" height="14" fill="#009C3B"/>
+            <rect x="7.5" width="14.5" height="14" fill="#FEDF00"/>
+            <circle cx="11" cy="7" r="3.2" fill="#002776"/>
+            <path d="M11 4.5 Q13.5 7 11 9.5 Q8.5 7 11 4.5Z" fill="none" stroke="white" stroke-width="0.6"/>
+          </svg>
+          Português
+        </button>
+        <button class="lang-option" data-lang="no" role="option" aria-selected="false">
+          <svg class="lang-flag" viewBox="0 0 22 14" aria-hidden="true">
+            <rect width="22" height="14" fill="#EF2B2D"/>
+            <rect x="5" width="4" height="14" fill="white"/>
+            <rect y="5" width="22" height="4" fill="white"/>
+            <rect x="6" width="2" height="14" fill="#002868"/>
+            <rect y="6" width="22" height="2" fill="#002868"/>
+          </svg>
+          Norsk
+        </button>
+      </div>
+    </div>
+
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+
+  </div>
 </nav>
 
 <!-- Hero -->
@@ -1102,25 +1526,27 @@ footer {
   <div class="hero-glow hero-glow-1"></div>
   <div class="hero-glow hero-glow-2"></div>
   <canvas id="particle-canvas"></canvas>
+
   <div class="hero-content">
     <div class="hero-text">
       <div class="hero-badge">
         <span class="badge-dot"></span>
-        Biomechanical AI for Occupational Health
+        <span data-i18n="hero_badge">Biomechanical AI for Occupational Health</span>
       </div>
-      <h1>Preventing the <span class="gradient-text">Sykefravær Crisis</span> Through Biomechanical Intelligence</h1>
-      <p class="hero-description">SALA is a proactive AI platform designed to tackle the high rate of absences due to musculoskeletal disorders in the transport sector. Unlike reactive HMS systems, SALA intervenes before injury occurs — monitoring biomechanical risks in real time.</p>
+      <h1 data-i18n="hero_title">Preventing the <span class="gradient-text">Sykefravær Crisis</span> Through Biomechanical Intelligence</h1>
+      <p class="hero-description" data-i18n="hero_description">SALA is a proactive AI platform designed to tackle the high rate of absences due to musculoskeletal disorders in the transport sector. Unlike reactive HMS systems, SALA intervenes before injury occurs — monitoring biomechanical risks in real time.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn-primary">
-          Get Started
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <span data-i18n="hero_cta1">Get Started</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
         <a href="#algorithm" class="btn-secondary">
-          Explore Technology
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          <span data-i18n="hero_cta2">Explore Technology</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
         </a>
       </div>
     </div>
+
     <div class="hero-visual">
       <div class="spine-visual">
         <svg class="spine-svg" viewBox="0 0 320 480" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1138,7 +1564,7 @@ footer {
               </feMerge>
             </filter>
           </defs>
-          
+
           <!-- Vertebrae -->
           <g filter="url(#glow)">
             <!-- Thoracic vertebrae -->
@@ -1157,7 +1583,7 @@ footer {
             <rect x="118" y="172" width="84" height="18" rx="9" fill="none" stroke="rgba(0,212,170,0.45)" stroke-width="1.5">
               <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" begin="0.6s" repeatCount="indefinite"/>
             </rect>
-            
+
             <!-- Lumbar vertebrae -->
             <rect x="115" y="200" width="90" height="22" rx="11" fill="none" stroke="rgba(0,212,170,0.5)" stroke-width="1.5">
               <animate attributeName="opacity" values="0.4;0.9;0.4" dur="3s" begin="0.75s" repeatCount="indefinite"/>
@@ -1171,36 +1597,36 @@ footer {
             <rect x="108" y="296" width="104" height="22" rx="11" fill="none" stroke="rgba(0,212,170,0.65)" stroke-width="1.5">
               <animate attributeName="opacity" values="0.4;0.9;0.4" dur="3s" begin="1.2s" repeatCount="indefinite"/>
             </rect>
-            
+
             <!-- L5/S1 Highlight -->
             <rect x="105" y="328" width="110" height="26" rx="13" fill="none" stroke="url(#spineGrad)" stroke-width="2.5">
               <animate attributeName="stroke-width" values="2;3.5;2" dur="2s" repeatCount="indefinite"/>
             </rect>
-            
+
             <!-- Sacrum -->
             <path d="M120 365 L115 400 Q160 420 205 400 L200 365" fill="none" stroke="rgba(0,136,255,0.4)" stroke-width="1.5">
               <animate attributeName="opacity" values="0.3;0.7;0.3" dur="3s" begin="1.5s" repeatCount="indefinite"/>
             </path>
-            
+
             <!-- Spinal cord -->
             <line x1="160" y1="60" x2="160" y2="340" stroke="url(#spineGrad)" stroke-width="2" opacity="0.3" stroke-dasharray="4 4">
               <animate attributeName="stroke-dashoffset" values="0;-8" dur="1s" repeatCount="indefinite"/>
             </line>
           </g>
-          
+
           <!-- L5/S1 Label -->
           <g>
             <line x1="215" y1="340" x2="260" y2="340" stroke="rgba(0,212,170,0.5)" stroke-width="1"/>
             <text x="265" y="344" fill="#00D4AA" font-size="11" font-family="JetBrains Mono, monospace" font-weight="500">L5/S1</text>
             <text x="265" y="360" fill="#5A6478" font-size="9" font-family="Inter, sans-serif">Compression Zone</text>
-            
+
             <!-- Animated pulse on L5/S1 -->
             <circle cx="160" cy="341" r="8" fill="none" stroke="#00D4AA" stroke-width="1.5" opacity="0">
               <animate attributeName="r" values="8;25" dur="2s" repeatCount="indefinite"/>
               <animate attributeName="opacity" values="0.6;0" dur="2s" repeatCount="indefinite"/>
             </circle>
           </g>
-          
+
           <!-- Compression arrows -->
           <g opacity="0.6">
             <path d="M160 30 L160 55" stroke="#FF4D6A" stroke-width="1.5" marker-end="url(#arrowRed)">
@@ -1210,7 +1636,7 @@ footer {
               <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2.5s" begin="0.5s" repeatCount="indefinite"/>
             </path>
           </g>
-          
+
           <defs>
             <marker id="arrowRed" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
               <path d="M0,0 L8,3 L0,6" fill="#FF4D6A" opacity="0.8"/>
@@ -1227,19 +1653,19 @@ footer {
   <div class="stats-grid">
     <div class="stat-item fade-in">
       <div class="stat-number" data-target="42" data-suffix="%">0%</div>
-      <div class="stat-label">Reduction in musculoskeletal sick leave</div>
+      <div class="stat-label" data-i18n="stat1_label">Reduction in musculoskeletal sick leave</div>
     </div>
     <div class="stat-item fade-in">
       <div class="stat-number" data-target="3" data-suffix="×">0×</div>
-      <div class="stat-label">Higher spinal load on icy surfaces</div>
+      <div class="stat-label" data-i18n="stat2_label">Higher spinal load on icy surfaces</div>
     </div>
     <div class="stat-item fade-in">
       <div class="stat-number" data-target="37.5" data-suffix="h" data-decimal="true">0h</div>
-      <div class="stat-label">Norwegian work week standard modeled</div>
+      <div class="stat-label" data-i18n="stat3_label">Norwegian work week standard modeled</div>
     </div>
     <div class="stat-item fade-in">
       <div class="stat-number" data-target="2631" data-suffix="-1">0-1</div>
-      <div class="stat-label">ISO 2631-1 vibration standard compliance</div>
+      <div class="stat-label" data-i18n="stat4_label">ISO 2631-1 vibration standard compliance</div>
     </div>
   </div>
 </div>
@@ -1247,43 +1673,48 @@ footer {
 <!-- Core Algorithm -->
 <section id="algorithm">
   <div class="fade-in">
-    <span class="section-label">Core Innovation</span>
-    <h2 class="section-title">The Biomechanical Algorithm</h2>
-    <p class="section-subtitle">SALA calculates the Risk Index (R<sub>i</sub>) focused on the human element — not just the vehicle. Our proprietary algorithm integrates four critical biomechanical factors.</p>
+    <span class="section-label" data-i18n="algo_label">Core Innovation</span>
+    <h2 class="section-title" data-i18n="algo_title">The Biomechanical Algorithm</h2>
+    <p class="section-subtitle" data-i18n="algo_subtitle">SALA calculates the Risk Index (R<sub>i</sub>) focused on the human element — not just the vehicle. Our proprietary algorithm integrates four critical biomechanical factors.</p>
   </div>
   <div class="algo-grid">
+
     <div class="algo-card fade-in">
       <div class="algo-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 2C9 2 7 4 7 7c0 2 1 3 1 5v2c0 2-1 3-1 5 0 3 2 5 5 5s5-2 5-5c0-2-1-3-1-5V12c0-2 1-3 1-5 0-3-2-5-5-5z"/><line x1="12" y1="2" x2="12" y2="7"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C9 2 7 4 7 7c0 2 1 3 1 5v2c0 2-1 3-1 5 0 3 2 5 5 5s5-2 5-5c0-2-1-3-1-5V12c0-2 1-3 1-5 0-3-2-5-5-5z"/><line x1="12" y1="2" x2="12" y2="7"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
       </div>
-      <h3>Lumbar L5/S1 Analysis</h3>
-      <p>Real-time monitoring of vertebral compression during load lifting. The L5/S1 joint bears the highest biomechanical stress, making it the critical point for injury prevention.</p>
+      <h3 data-i18n="algo_c1_title">Lumbar L5/S1 Analysis</h3>
+      <p data-i18n="algo_c1_desc">Real-time monitoring of vertebral compression during load lifting. The L5/S1 joint bears the highest biomechanical stress, making it the critical point for injury prevention.</p>
       <span class="algo-formula">C<sub>compress</sub> = F<sub>load</sub> × d<sub>moment</sub> × k<sub>posture</sub></span>
     </div>
+
     <div class="algo-card fade-in">
       <div class="algo-icon">
-        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
       </div>
-      <h3>Surface Factor (S<sub>f</sub>)</h3>
-      <p>Dynamic adjustment for critical conditions — Norway's harsh winters with ice and snow can increase spinal stabilization effort up to 3×. The algorithm adapts risk thresholds in real time.</p>
+      <h3 data-i18n="algo_c2_title">Surface Factor (S<sub>f</sub>)</h3>
+      <p data-i18n="algo_c2_desc">Dynamic adjustment for critical conditions — Norway's harsh winters with ice and snow can increase spinal stabilization effort up to 3×. The algorithm adapts risk thresholds in real time.</p>
       <span class="algo-formula">S<sub>f</sub> = μ<sub>ice</sub> × θ<sub>slope</sub> × W<sub>seasonal</sub></span>
     </div>
+
     <div class="algo-card fade-in">
       <div class="algo-icon">
-        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
       </div>
-      <h3>Vibration Exposure (ISO 2631-1)</h3>
-      <p>Protection against whole-body vibration (WBV) to prevent neuromuscular fatigue and chronic pain. Continuous monitoring aligned with international safety standards.</p>
+      <h3 data-i18n="algo_c3_title">Vibration Exposure (ISO 2631-1)</h3>
+      <p data-i18n="algo_c3_desc">Protection against whole-body vibration (WBV) to prevent neuromuscular fatigue and chronic pain. Continuous monitoring aligned with international safety standards.</p>
       <span class="algo-formula">WBV<sub>daily</sub> = A(8) × √t<sub>exposure</sub></span>
     </div>
+
     <div class="algo-card fade-in">
       <div class="algo-icon">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       </div>
-      <h3>Accumulated Fatigue</h3>
-      <p>Modeling based on the Norwegian work standard (37.5h/week) and environmental stressors. Tracks cumulative load across shifts to prevent chronic overexposure.</p>
+      <h3 data-i18n="algo_c4_title">Accumulated Fatigue</h3>
+      <p data-i18n="algo_c4_desc">Modeling based on the Norwegian work standard (37.5h/week) and environmental stressors. Tracks cumulative load across shifts to prevent chronic overexposure.</p>
       <span class="algo-formula">F<sub>total</sub> = Σ(F<sub>shift</sub> × R<sub>recovery</sub>)</span>
     </div>
+
   </div>
 </section>
 
@@ -1291,9 +1722,9 @@ footer {
 <div class="risk-section" id="risk">
   <div class="risk-inner">
     <div class="fade-in">
-      <span class="section-label">Real-Time Intelligence</span>
-      <h2 class="section-title">Risk Index R<sub>i</sub> Dashboard</h2>
-      <p class="section-subtitle">The Risk Index synthesizes all biomechanical factors into a single actionable metric, enabling immediate intervention before injury occurs.</p>
+      <span class="section-label" data-i18n="risk_label">Real-Time Intelligence</span>
+      <h2 class="section-title" data-i18n="risk_title">Risk Index R<sub>i</sub> Dashboard</h2>
+      <p class="section-subtitle" data-i18n="risk_subtitle">The Risk Index synthesizes all biomechanical factors into a single actionable metric, enabling immediate intervention before injury occurs.</p>
     </div>
     <div class="risk-display">
       <div class="risk-meter fade-in">
@@ -1314,36 +1745,37 @@ footer {
             <div class="risk-unit">R<sub>i</sub> Score</div>
           </div>
         </div>
-        <div class="risk-label">Current Biomechanical Risk Level</div>
+        <div class="risk-label" data-i18n="risk_current_label">Current Biomechanical Risk Level</div>
       </div>
+
       <div class="risk-details fade-in">
         <div class="risk-detail-item">
           <div class="risk-detail-icon safe">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
           <div class="risk-detail-text">
-            <h4>Low Risk (0–30)</h4>
-            <p>Normal operations — continue standard procedures</p>
+            <h4 data-i18n="risk_low_title">Low Risk (0–30)</h4>
+            <p data-i18n="risk_low_desc">Normal operations — continue standard procedures</p>
             <div class="risk-bar"><div class="risk-bar-fill safe" style="width: 0%"></div></div>
           </div>
         </div>
         <div class="risk-detail-item">
           <div class="risk-detail-icon warn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
           </div>
           <div class="risk-detail-text">
-            <h4>Moderate Risk (31–65)</h4>
-            <p>Recommend mechanical assistance or load division</p>
+            <h4 data-i18n="risk_mod_title">Moderate Risk (31–65)</h4>
+            <p data-i18n="risk_mod_desc">Recommend mechanical assistance or load division</p>
             <div class="risk-bar"><div class="risk-bar-fill warn" style="width: 0%"></div></div>
           </div>
         </div>
         <div class="risk-detail-item">
           <div class="risk-detail-icon danger">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
           </div>
           <div class="risk-detail-text">
-            <h4>Critical Risk (66–100)</h4>
-            <p>Immediate intervention required — halt operation</p>
+            <h4 data-i18n="risk_crit_title">Critical Risk (66–100)</h4>
+            <p data-i18n="risk_crit_desc">Immediate intervention required — halt operation</p>
             <div class="risk-bar"><div class="risk-bar-fill danger" style="width: 0%"></div></div>
           </div>
         </div>
@@ -1355,32 +1787,36 @@ footer {
 <!-- Impact Section -->
 <section id="impact">
   <div class="fade-in">
-    <span class="section-label">Operational Impact</span>
-    <h2 class="section-title">Transforming Safety Management</h2>
-    <p class="section-subtitle">SALA shifts occupational safety from reactive compliance to proactive prevention, protecting workers while optimizing operations.</p>
+    <span class="section-label" data-i18n="impact_label">Operational Impact</span>
+    <h2 class="section-title" data-i18n="impact_title">Transforming Safety Management</h2>
+    <p class="section-subtitle" data-i18n="impact_subtitle">SALA shifts occupational safety from reactive compliance to proactive prevention, protecting workers while optimizing operations.</p>
   </div>
   <div class="impact-grid">
+
     <div class="impact-card fade-in">
       <div class="impact-icon-wrap">
-        <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
       </div>
-      <h3>Real-Time Alerts</h3>
-      <p>Drivers receive immediate strategic recommendations via the app — such as requesting mechanical assistance or dividing loads — when risk reaches critical levels.</p>
+      <h3 data-i18n="impact_c1_title">Real-Time Alerts</h3>
+      <p data-i18n="impact_c1_desc">Drivers receive immediate strategic recommendations via the app — such as requesting mechanical assistance or dividing loads — when risk reaches critical levels.</p>
     </div>
+
     <div class="impact-card fade-in">
       <div class="impact-icon-wrap">
-        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       </div>
-      <h3>AML § 4-4 Compliance</h3>
-      <p>The system automates compliance with Norway's Working Environment Act (Arbeidsmiljøloven), providing actionable data for safety delegates (Verneombud).</p>
+      <h3 data-i18n="impact_c2_title">AML § 4-4 Compliance</h3>
+      <p data-i18n="impact_c2_desc">The system automates compliance with Norway's Working Environment Act (Arbeidsmiljøloven), providing actionable data for safety delegates (Verneombud).</p>
     </div>
+
     <div class="impact-card fade-in">
       <div class="impact-icon-wrap">
-        <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
       </div>
-      <h3>Economic ROI</h3>
-      <p>Massive cost reduction through decreased sick leave (sykemelding), lower staff turnover, reduced insurance premiums, and indirect costs for companies and NAV.</p>
+      <h3 data-i18n="impact_c3_title">Economic ROI</h3>
+      <p data-i18n="impact_c3_desc">Massive cost reduction through decreased sick leave (sykemelding), lower staff turnover, reduced insurance premiums, and indirect costs for companies and NAV.</p>
     </div>
+
   </div>
 </section>
 
@@ -1388,37 +1824,40 @@ footer {
 <div class="compliance-section" id="compliance">
   <div class="compliance-inner">
     <div class="fade-in">
-      <span class="section-label">Legal Framework</span>
-      <h2 class="section-title">Built for Norwegian Compliance</h2>
-      <p class="section-subtitle">Fully aligned with Norwegian occupational health legislation and international biomechanical standards.</p>
+      <span class="section-label" data-i18n="compliance_label">Legal Framework</span>
+      <h2 class="section-title" data-i18n="compliance_title">Built for Norwegian Compliance</h2>
+      <p class="section-subtitle" data-i18n="compliance_subtitle">Fully aligned with Norwegian occupational health legislation and international biomechanical standards.</p>
     </div>
     <div class="compliance-grid">
+
       <div class="compliance-card fade-in">
         <h3>
-          <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-          Arbeidsmiljøloven § 4-4
+          <span class="check-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span data-i18n="compliance_aml_title">Arbeidsmiljøloven § 4-4</span>
         </h3>
         <ul>
-          <li>Automated documentation of biomechanical risk assessments</li>
-          <li>Real-time data feeds for safety delegates (Verneombud)</li>
-          <li>Shift-level exposure tracking aligned with 37.5h standard</li>
-          <li>Audit-ready reports for regulatory inspections</li>
-          <li>Proactive intervention logs demonstrating duty of care</li>
+          <li data-i18n="compliance_aml_1">Automated documentation of biomechanical risk assessments</li>
+          <li data-i18n="compliance_aml_2">Real-time data feeds for safety delegates (Verneombud)</li>
+          <li data-i18n="compliance_aml_3">Shift-level exposure tracking aligned with 37.5h standard</li>
+          <li data-i18n="compliance_aml_4">Audit-ready reports for regulatory inspections</li>
+          <li data-i18n="compliance_aml_5">Proactive intervention logs demonstrating duty of care</li>
         </ul>
       </div>
+
       <div class="compliance-card fade-in">
         <h3>
-          <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-          International Standards
+          <span class="check-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span data-i18n="compliance_intl_title">International Standards</span>
         </h3>
         <ul>
-          <li>ISO 2631-1: Whole-body vibration assessment</li>
-          <li>NISO 4400: Norwegian ergonomic risk evaluation</li>
-          <li>EU Directive 90/269/EEC: Manual handling of loads</li>
-          <li>ISO 11228: Manual handling guidelines</li>
-          <li>EN 1005: Safety of machinery — human physical performance</li>
+          <li data-i18n="compliance_intl_1">ISO 2631-1: Whole-body vibration assessment</li>
+          <li data-i18n="compliance_intl_2">NISO 4400: Norwegian ergonomic risk evaluation</li>
+          <li data-i18n="compliance_intl_3">EU Directive 90/269/EEC: Manual handling of loads</li>
+          <li data-i18n="compliance_intl_4">ISO 11228: Manual handling guidelines</li>
+          <li data-i18n="compliance_intl_5">EN 1005: Safety of machinery — human physical performance</li>
         </ul>
       </div>
+
     </div>
   </div>
 </div>
@@ -1426,25 +1865,25 @@ footer {
 <!-- ROI Section -->
 <section id="roi">
   <div class="fade-in">
-    <span class="section-label">Return on Investment</span>
-    <h2 class="section-title">Measurable Economic Impact</h2>
-    <p class="section-subtitle">SALA delivers quantifiable savings across sick leave reduction, insurance optimization, and workforce retention.</p>
+    <span class="section-label" data-i18n="roi_label">Return on Investment</span>
+    <h2 class="section-title" data-i18n="roi_title">Measurable Economic Impact</h2>
+    <p class="section-subtitle" data-i18n="roi_subtitle">SALA delivers quantifiable savings across sick leave reduction, insurance optimization, and workforce retention.</p>
   </div>
   <div class="roi-grid">
     <div class="roi-card fade-in">
       <div class="roi-metric" data-target="42" data-suffix="%">0%</div>
-      <h3>Reduced Sick Leave</h3>
-      <p>Significant decrease in musculoskeletal-related absences (sykemelding) within the first 12 months of deployment.</p>
+      <h3 data-i18n="roi_c1_title">Reduced Sick Leave</h3>
+      <p data-i18n="roi_c1_desc">Significant decrease in musculoskeletal-related absences (sykemelding) within the first 12 months of deployment.</p>
     </div>
     <div class="roi-card fade-in">
       <div class="roi-metric" data-target="68" data-suffix="%">0%</div>
-      <h3>Lower Insurance Premiums</h3>
-      <p>Data-driven risk reduction qualifies for reduced occupational injury insurance costs and NAV contributions.</p>
+      <h3 data-i18n="roi_c2_title">Lower Insurance Premiums</h3>
+      <p data-i18n="roi_c2_desc">Data-driven risk reduction qualifies for reduced occupational injury insurance costs and NAV contributions.</p>
     </div>
     <div class="roi-card fade-in">
       <div class="roi-metric" data-target="3.2" data-suffix="×" data-decimal="true">0×</div>
-      <h3>ROI in Year One</h3>
-      <p>Average return on investment through combined savings in medical costs, recruitment, and productivity gains.</p>
+      <h3 data-i18n="roi_c3_title">ROI in Year One</h3>
+      <p data-i18n="roi_c3_desc">Average return on investment through combined savings in medical costs, recruitment, and productivity gains.</p>
     </div>
   </div>
 </section>
@@ -1452,55 +1891,120 @@ footer {
 <!-- CTA -->
 <div class="cta-section" id="contact">
   <div class="cta-inner fade-in">
-    <h2>Ready to Transform Your <span class="gradient-text">Occupational Safety</span>?</h2>
-    <p>Join leading Norwegian transport companies already using SALA to prevent injuries, ensure compliance, and reduce costs.</p>
+    <h2 data-i18n="cta_title">Ready to Transform Your <span class="gradient-text">Occupational Safety</span>?</h2>
+    <p data-i18n="cta_desc">Join leading Norwegian transport companies already using SALA to prevent injuries, ensure compliance, and reduce costs.</p>
     <div class="cta-buttons">
-      <a href="#" class="btn-primary">
-        Request a Demo
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <a href="contato.html" class="btn-primary">
+        <span data-i18n="cta_btn1">Request a Demo</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
       <a href="#" class="btn-secondary">
-        Download Whitepaper
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span data-i18n="cta_btn2">Download Whitepaper</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       </a>
     </div>
   </div>
 </div>
 
-<!-- Footer -->
+<!-- Footer — 4 Columns -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-logo">
-      <div class="footer-logo-icon">SL</div>
-      <span class="footer-text">© 2026 SALA — Safe-Load Analytics. All rights reserved.</span>
+  <div class="footer-main">
+
+    <!-- Column 1: Brand + Slogan -->
+    <div class="footer-col">
+      <a href="#" class="footer-brand">
+        <div class="footer-logo-icon">SL</div>
+        <span class="footer-brand-name">SALA</span>
+      </a>
+      <p class="footer-slogan" data-i18n="footer_slogan">AI-powered biomechanical risk intelligence for the Norwegian transport sector.</p>
+      <p class="footer-safelast">Part of the <a href="https://sala.safelast.no" target="_blank" rel="noopener">SafeLast</a> ecosystem</p>
     </div>
-    <div class="footer-links">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
-      <a href="#">Contact</a>
-<a href="https://app-algoritmo.github.io/digital-solutions" 
-   target="_blank" 
-   rel="noopener noreferrer" 
-   style="margin: 0 10px; text-decoration: none; color: #D4AF37;">
-   Developed by Digital Solutions
-</a>
+
+    <!-- Column 2: Quick Links -->
+    <div class="footer-col">
+      <h4 data-i18n="footer_ql_heading">Quick Links</h4>
+      <ul>
+        <li><a href="#algorithm" data-i18n="footer_link_algorithm">Algorithm</a></li>
+        <li><a href="#risk"      data-i18n="footer_link_risk">Risk Index</a></li>
+        <li><a href="#impact"   data-i18n="footer_link_impact">Impact</a></li>
+        <li><a href="#compliance" data-i18n="footer_link_compliance">Compliance</a></li>
+        <li><a href="#roi"      data-i18n="footer_link_roi">ROI</a></li>
+        <li><a href="contato.html" data-i18n="footer_link_contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 3: Social Media -->
+    <div class="footer-col">
+      <h4 data-i18n="footer_social_heading">Social Media</h4>
+      <a class="footer-social-link" href="https://www.linkedin.com/in/paulofernandodebarros" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a class="footer-social-link" href="https://x.com/paulofdbarros" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        X (Twitter)
+      </a>
+      <a class="footer-social-link" href="https://barros.no" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        barros.no
+      </a>
+    </div>
+
+    <!-- Column 4: Legal -->
+    <div class="footer-col">
+      <h4 data-i18n="footer_legal_heading">Legal</h4>
+      <ul>
+        <li><a href="privacidade.html" data-i18n="footer_link_privacy">Privacy Policy</a></li>
+        <li><a href="termos.html"      data-i18n="footer_link_terms">Terms of Use</a></li>
+        <li><a href="cookies.html"     data-i18n="footer_link_cookies">Cookie Policy</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <span class="footer-copyright" data-i18n="footer_copyright">© 2026 SALA — Safe-Load Analytics. All rights reserved.</span>
+      <span class="footer-dev-link">
+        <a href="https://ds.barros.no" target="_blank" rel="noopener" data-i18n="footer_dev">Developed by Digital Solutions</a>
+      </span>
     </div>
   </div>
 </footer>
 
+<!-- Cookie Banner -->
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Cookie consent">
+  <div class="cookie-banner-icon" aria-hidden="true">🍪</div>
+  <div class="cookie-banner-content">
+    <h4 data-i18n="cookie_title">We use cookies</h4>
+    <p id="cookieBannerDesc">We use cookies to improve your experience and analyse site performance. See our <a href="cookies.html">Cookie Policy</a> for details.</p>
+  </div>
+  <div class="cookie-banner-actions">
+    <button class="cookie-btn cookie-btn-reject"    data-i18n="cookie_reject"    onclick="handleCookieChoice('reject')">Reject</button>
+    <button class="cookie-btn cookie-btn-customize" data-i18n="cookie_customize" onclick="location.href='cookies.html'">Customize</button>
+    <button class="cookie-btn cookie-btn-accept"    data-i18n="cookie_accept"    onclick="handleCookieChoice('accept')">Accept All</button>
+  </div>
+</div>
+
 <script>
-// Navigation scroll effect
+// ─── Navigation scroll effect ────────────────────────────────────────────────
+
 const navbar = document.getElementById('navbar');
+
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 50);
 });
 
-// Mobile toggle
+
+// ─── Mobile toggle ───────────────────────────────────────────────────────────
+
 const mobileToggle = document.getElementById('mobileToggle');
 const navLinks = document.getElementById('navLinks');
+
 mobileToggle.addEventListener('click', () => {
   navLinks.classList.toggle('active');
   const spans = mobileToggle.querySelectorAll('span');
+
   if (navLinks.classList.contains('active')) {
     spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
     spans[1].style.opacity = '0';
@@ -1523,7 +2027,9 @@ navLinks.querySelectorAll('a').forEach(link => {
   });
 });
 
-// Intersection Observer for fade-in animations
+
+// ─── Intersection Observer for fade-in animations ────────────────────────────
+
 const fadeObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -1534,7 +2040,9 @@ const fadeObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
 
-// Counter animation
+
+// ─── Counter animation ───────────────────────────────────────────────────────
+
 function animateCounter(el) {
   const target = parseFloat(el.dataset.target);
   const suffix = el.dataset.suffix || '';
@@ -1548,11 +2056,7 @@ function animateCounter(el) {
     const eased = 1 - Math.pow(1 - progress, 3);
     const current = eased * target;
 
-    if (isDecimal) {
-      el.textContent = current.toFixed(1) + suffix;
-    } else {
-      el.textContent = Math.round(current) + suffix;
-    }
+    el.textContent = isDecimal ? current.toFixed(1) + suffix : Math.round(current) + suffix;
 
     if (progress < 1) {
       requestAnimationFrame(update);
@@ -1573,12 +2077,13 @@ const counterObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
 
-// Risk circle animation
+
+// ─── Risk circle animation ───────────────────────────────────────────────────
+
 const riskCircle = document.getElementById('riskCircle');
 const riskNumber = document.getElementById('riskNumber');
 const circumference = 2 * Math.PI * 110; // ~691.15
 
-let riskTarget = 0;
 const riskTargetFinal = 57;
 const riskDuration = 2500;
 
@@ -1592,8 +2097,7 @@ function animateRisk() {
     const current = Math.round(eased * riskTargetFinal);
 
     riskNumber.textContent = current;
-    const offset = circumference - (current / 100) * circumference;
-    riskCircle.style.strokeDashoffset = offset;
+    riskCircle.style.strokeDashoffset = circumference - (current / 100) * circumference;
 
     if (progress < 1) {
       requestAnimationFrame(update);
@@ -1614,8 +2118,9 @@ const riskObserver = new IntersectionObserver((entries) => {
 
 riskObserver.observe(document.querySelector('.risk-meter'));
 
-// Risk bar fills animation
-const riskBars = document.querySelectorAll('.risk-bar-fill');
+
+// ─── Risk bar fills animation ─────────────────────────────────────────────────
+
 const barValues = [30, 55, 80];
 
 const barObserver = new IntersectionObserver((entries) => {
@@ -1634,7 +2139,9 @@ const barObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.risk-details').forEach(el => barObserver.observe(el));
 
-// Particle animation
+
+// ─── Particle animation ───────────────────────────────────────────────────────
+
 const canvas = document.getElementById('particle-canvas');
 const ctx = canvas.getContext('2d');
 
@@ -1644,9 +2151,6 @@ function resizeCanvas() {
 }
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
-
-const particles = [];
-const particleCount = 50;
 
 class Particle {
   constructor() {
@@ -1679,19 +2183,22 @@ class Particle {
   }
 }
 
+const particles = [];
+const particleCount = 50;
+
 for (let i = 0; i < particleCount; i++) {
   particles.push(new Particle());
 }
 
 function drawParticles() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
+
   particles.forEach(p => {
     p.update();
     p.draw();
   });
 
-  // Draw connections
+  // Draw connections between nearby particles
   for (let i = 0; i < particles.length; i++) {
     for (let j = i + 1; j < particles.length; j++) {
       const dx = particles[i].x - particles[j].x;
@@ -1714,12 +2221,15 @@ function drawParticles() {
 
 drawParticles();
 
-// Smooth scroll for anchor links
+
+// ─── Smooth scroll for anchor links ──────────────────────────────────────────
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     const targetId = this.getAttribute('href');
     if (targetId === '#') return;
     e.preventDefault();
+
     const target = document.querySelector(targetId);
     if (target) {
       const offset = 80;
@@ -1728,7 +2238,508 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+
+
+// ─── Language Selector ────────────────────────────────────────────────────────
+
+const translations = {
+  en: {
+    nav_algorithm:        'Algorithm',
+    nav_risk:             'Risk Index',
+    nav_impact:           'Impact',
+    nav_compliance:       'Compliance',
+    nav_roi:              'ROI',
+    nav_demo:             'Request Demo',
+    hero_badge:           'Biomechanical AI for Occupational Health',
+    hero_title:           'Preventing the <span class="gradient-text">Sykefravær Crisis</span> Through Biomechanical Intelligence',
+    hero_description:     'SALA is a proactive AI platform designed to tackle the high rate of absences due to musculoskeletal disorders in the transport sector. Unlike reactive HMS systems, SALA intervenes before injury occurs — monitoring biomechanical risks in real time.',
+    hero_cta1:            'Get Started',
+    hero_cta2:            'Explore Technology',
+    stat1_label:          'Reduction in musculoskeletal sick leave',
+    stat2_label:          'Higher spinal load on icy surfaces',
+    stat3_label:          'Norwegian work week standard modeled',
+    stat4_label:          'ISO 2631-1 vibration standard compliance',
+    algo_label:           'Core Innovation',
+    algo_title:           'The Biomechanical Algorithm',
+    algo_subtitle:        'SALA calculates the Risk Index (R<sub>i</sub>) focused on the human element — not just the vehicle. Our proprietary algorithm integrates four critical biomechanical factors.',
+    algo_c1_title:        'Lumbar L5/S1 Analysis',
+    algo_c1_desc:         'Real-time monitoring of vertebral compression during load lifting. The L5/S1 joint bears the highest biomechanical stress, making it the critical point for injury prevention.',
+    algo_c2_title:        'Surface Factor (S<sub>f</sub>)',
+    algo_c2_desc:         "Norway's harsh winters with ice and snow can increase spinal stabilization effort up to 3×. The algorithm adapts risk thresholds in real time.",
+    algo_c3_title:        'Vibration Exposure (ISO 2631-1)',
+    algo_c3_desc:         'Protection against whole-body vibration (WBV) to prevent neuromuscular fatigue and chronic pain. Continuous monitoring aligned with international safety standards.',
+    algo_c4_title:        'Accumulated Fatigue',
+    algo_c4_desc:         'Modeling based on the Norwegian work standard (37.5h/week) and environmental stressors. Tracks cumulative load across shifts to prevent chronic overexposure.',
+    risk_label:           'Real-Time Intelligence',
+    risk_title:           'Risk Index R<sub>i</sub> Dashboard',
+    risk_subtitle:        'The Risk Index synthesizes all biomechanical factors into a single actionable metric, enabling immediate intervention before injury occurs.',
+    risk_current_label:   'Current Biomechanical Risk Level',
+    risk_low_title:       'Low Risk (0–30)',
+    risk_low_desc:        'Normal operations — continue standard procedures',
+    risk_mod_title:       'Moderate Risk (31–65)',
+    risk_mod_desc:        'Recommend mechanical assistance or load division',
+    risk_crit_title:      'Critical Risk (66–100)',
+    risk_crit_desc:       'Immediate intervention required — halt operation',
+    impact_label:         'Operational Impact',
+    impact_title:         'Transforming Safety Management',
+    impact_subtitle:      'SALA shifts occupational safety from reactive compliance to proactive prevention, protecting workers while optimizing operations.',
+    impact_c1_title:      'Real-Time Alerts',
+    impact_c1_desc:       'Drivers receive immediate strategic recommendations via the app — such as requesting mechanical assistance or dividing loads — when risk reaches critical levels.',
+    impact_c2_title:      'AML § 4-4 Compliance',
+    impact_c2_desc:       "The system automates compliance with Norway's Working Environment Act (Arbeidsmiljøloven), providing actionable data for safety delegates (Verneombud).",
+    impact_c3_title:      'Economic ROI',
+    impact_c3_desc:       'Massive cost reduction through decreased sick leave (sykemelding), lower staff turnover, reduced insurance premiums, and indirect costs for companies and NAV.',
+    compliance_label:     'Legal Framework',
+    compliance_title:     'Built for Norwegian Compliance',
+    compliance_subtitle:  'Fully aligned with Norwegian occupational health legislation and international biomechanical standards.',
+    compliance_aml_title: 'Arbeidsmiljøloven § 4-4',
+    compliance_aml_1:     'Automated documentation of biomechanical risk assessments',
+    compliance_aml_2:     'Real-time data feeds for safety delegates (Verneombud)',
+    compliance_aml_3:     'Shift-level exposure tracking aligned with 37.5h standard',
+    compliance_aml_4:     'Audit-ready reports for regulatory inspections',
+    compliance_aml_5:     'Proactive intervention logs demonstrating duty of care',
+    compliance_intl_title:'International Standards',
+    compliance_intl_1:    'ISO 2631-1: Whole-body vibration assessment',
+    compliance_intl_2:    'NISO 4400: Norwegian ergonomic risk evaluation',
+    compliance_intl_3:    'EU Directive 90/269/EEC: Manual handling of loads',
+    compliance_intl_4:    'ISO 11228: Manual handling guidelines',
+    compliance_intl_5:    'EN 1005: Safety of machinery — human physical performance',
+    roi_label:            'Return on Investment',
+    roi_title:            'Measurable Economic Impact',
+    roi_subtitle:         'SALA delivers quantifiable savings across sick leave reduction, insurance optimization, and workforce retention.',
+    roi_c1_title:         'Reduced Sick Leave',
+    roi_c1_desc:          'Significant decrease in musculoskeletal-related absences (sykemelding) within the first 12 months of deployment.',
+    roi_c2_title:         'Lower Insurance Premiums',
+    roi_c2_desc:          'Data-driven risk reduction qualifies for reduced occupational injury insurance costs and NAV contributions.',
+    roi_c3_title:         'ROI in Year One',
+    roi_c3_desc:          'Average return on investment through combined savings in medical costs, recruitment, and productivity gains.',
+    cta_title:            'Ready to Transform Your <span class="gradient-text">Occupational Safety</span>?',
+    cta_desc:             'Join leading Norwegian transport companies already using SALA to prevent injuries, ensure compliance, and reduce costs.',
+    cta_btn1:             'Request a Demo',
+    cta_btn2:             'Download Whitepaper',
+    footer_slogan:        'AI-powered biomechanical risk intelligence for the Norwegian transport sector.',
+    footer_ql_heading:    'Quick Links',
+    footer_social_heading:'Social Media',
+    footer_legal_heading: 'Legal',
+    footer_link_algorithm:'Algorithm',
+    footer_link_risk:     'Risk Index',
+    footer_link_impact:   'Impact',
+    footer_link_compliance:'Compliance',
+    footer_link_roi:      'ROI',
+    footer_link_contact:  'Contact',
+    footer_link_privacy:  'Privacy Policy',
+    footer_link_terms:    'Terms of Use',
+    footer_link_cookies:  'Cookie Policy',
+    footer_copyright:     '© 2026 SALA — Safe-Load Analytics. All rights reserved.',
+    footer_dev:           'Developed by Digital Solutions',
+    cookie_title:         'We use cookies',
+    cookie_desc:          'We use cookies to improve your experience and analyse site performance. See our <a href="cookies.html">Cookie Policy</a> for details.',
+    cookie_reject:        'Reject',
+    cookie_customize:     'Customize',
+    cookie_accept:        'Accept All'
+  },
+
+  es: {
+    nav_algorithm:        'Algoritmo',
+    nav_risk:             'Índice de Riesgo',
+    nav_impact:           'Impacto',
+    nav_compliance:       'Cumplimiento',
+    nav_roi:              'ROI',
+    nav_demo:             'Solicitar Demo',
+    hero_badge:           'IA Biomecánica para Salud Ocupacional',
+    hero_title:           'Previniendo la <span class="gradient-text">Crisis de Sykefravær</span> con Inteligencia Biomecánica',
+    hero_description:     'SALA es una plataforma de IA proactiva diseñada para combatir la alta tasa de ausencias por trastornos musculoesqueléticos en el transporte. A diferencia de los sistemas HMS reactivos, SALA interviene antes de la lesión — monitoreando riesgos biomecánicos en tiempo real.',
+    hero_cta1:            'Comenzar',
+    hero_cta2:            'Explorar Tecnología',
+    stat1_label:          'Reducción en bajas musculoesqueléticas',
+    stat2_label:          'Mayor carga espinal en superficies heladas',
+    stat3_label:          'Semana laboral noruega estándar modelada',
+    stat4_label:          'Cumplimiento norma vibración ISO 2631-1',
+    algo_label:           'Innovación Central',
+    algo_title:           'El Algoritmo Biomecánico',
+    algo_subtitle:        'SALA calcula el Índice de Riesgo (R<sub>i</sub>) enfocado en el elemento humano — no solo el vehículo. Nuestro algoritmo integra cuatro factores biomecánicos críticos.',
+    algo_c1_title:        'Análisis Lumbar L5/S1',
+    algo_c1_desc:         'Monitoreo en tiempo real de la compresión vertebral durante el levantamiento. La articulación L5/S1 soporta el mayor estrés biomecánico, siendo el punto crítico para la prevención.',
+    algo_c2_title:        'Factor de Superficie (S<sub>f</sub>)',
+    algo_c2_desc:         'Los inviernos severos de Noruega pueden aumentar el esfuerzo de estabilización espinal hasta 3×. El algoritmo adapta los umbrales de riesgo en tiempo real.',
+    algo_c3_title:        'Exposición a Vibración (ISO 2631-1)',
+    algo_c3_desc:         'Protección contra vibración de cuerpo completo (VCC) para prevenir fatiga neuromuscular y dolor crónico. Monitoreo continuo alineado con estándares internacionales.',
+    algo_c4_title:        'Fatiga Acumulada',
+    algo_c4_desc:         'Modelado basado en el estándar laboral noruego (37,5h/semana) y factores ambientales. Rastrea la carga acumulada entre turnos para prevenir sobreexposición crónica.',
+    risk_label:           'Inteligencia en Tiempo Real',
+    risk_title:           'Panel del Índice de Riesgo R<sub>i</sub>',
+    risk_subtitle:        'El Índice de Riesgo sintetiza todos los factores biomecánicos en una métrica accionable, permitiendo intervención inmediata antes de que ocurra la lesión.',
+    risk_current_label:   'Nivel de Riesgo Biomecánico Actual',
+    risk_low_title:       'Riesgo Bajo (0–30)',
+    risk_low_desc:        'Operaciones normales — continuar procedimientos estándar',
+    risk_mod_title:       'Riesgo Moderado (31–65)',
+    risk_mod_desc:        'Recomendar asistencia mecánica o división de carga',
+    risk_crit_title:      'Riesgo Crítico (66–100)',
+    risk_crit_desc:       'Intervención inmediata requerida — detener operación',
+    impact_label:         'Impacto Operacional',
+    impact_title:         'Transformando la Gestión de Seguridad',
+    impact_subtitle:      'SALA transforma la seguridad laboral del cumplimiento reactivo a la prevención proactiva, protegiendo a los trabajadores mientras optimiza las operaciones.',
+    impact_c1_title:      'Alertas en Tiempo Real',
+    impact_c1_desc:       'Los conductores reciben recomendaciones estratégicas inmediatas — como asistencia mecánica o división de cargas — cuando el riesgo alcanza niveles críticos.',
+    impact_c2_title:      'Cumplimiento AML § 4-4',
+    impact_c2_desc:       'El sistema automatiza el cumplimiento de la Ley del Entorno Laboral noruego, proporcionando datos accionables para delegados de seguridad (Verneombud).',
+    impact_c3_title:      'ROI Económico',
+    impact_c3_desc:       'Reducción masiva de costos a través de la disminución de bajas laborales, menor rotación de personal, primas reducidas y costos indirectos para empresas y NAV.',
+    compliance_label:     'Marco Legal',
+    compliance_title:     'Diseñado para el Cumplimiento Noruego',
+    compliance_subtitle:  'Totalmente alineado con la legislación noruega de salud ocupacional y los estándares biomecánicos internacionales.',
+    compliance_aml_title: 'Arbeidsmiljøloven § 4-4',
+    compliance_aml_1:     'Documentación automatizada de evaluaciones de riesgo biomecánico',
+    compliance_aml_2:     'Feeds de datos en tiempo real para delegados de seguridad (Verneombud)',
+    compliance_aml_3:     'Seguimiento de exposición por turno alineado con el estándar de 37,5h',
+    compliance_aml_4:     'Informes listos para auditoría en inspecciones regulatorias',
+    compliance_aml_5:     'Registros de intervención proactiva que demuestran deber de cuidado',
+    compliance_intl_title:'Estándares Internacionales',
+    compliance_intl_1:    'ISO 2631-1: Evaluación de vibración de cuerpo completo',
+    compliance_intl_2:    'NISO 4400: Evaluación ergonómica de riesgo noruega',
+    compliance_intl_3:    'Directiva UE 90/269/CEE: Manipulación manual de cargas',
+    compliance_intl_4:    'ISO 11228: Directrices de manipulación manual',
+    compliance_intl_5:    'EN 1005: Seguridad de maquinaria — desempeño físico humano',
+    roi_label:            'Retorno de Inversión',
+    roi_title:            'Impacto Económico Medible',
+    roi_subtitle:         'SALA ofrece ahorros cuantificables en reducción de bajas, optimización de seguros y retención de personal.',
+    roi_c1_title:         'Bajas Reducidas',
+    roi_c1_desc:          'Disminución significativa de ausencias musculoesqueléticas (sykemelding) en los primeros 12 meses de implementación.',
+    roi_c2_title:         'Primas de Seguro Menores',
+    roi_c2_desc:          'La reducción de riesgo basada en datos califica para menores costos de seguro y contribuciones a NAV.',
+    roi_c3_title:         'ROI en el Primer Año',
+    roi_c3_desc:          'Retorno promedio de inversión mediante ahorros en costos médicos, reclutamiento y ganancias de productividad.',
+    cta_title:            '¿Listo para Transformar su <span class="gradient-text">Seguridad Ocupacional</span>?',
+    cta_desc:             'Únase a las principales empresas de transporte noruegas que ya usan SALA para prevenir lesiones, garantizar el cumplimiento y reducir costos.',
+    cta_btn1:             'Solicitar una Demo',
+    cta_btn2:             'Descargar Whitepaper',
+    footer_slogan:        'Inteligencia de riesgo biomecánico con IA para el sector del transporte noruego.',
+    footer_ql_heading:    'Enlaces Rápidos',
+    footer_social_heading:'Redes Sociales',
+    footer_legal_heading: 'Legal',
+    footer_link_algorithm:'Algoritmo',
+    footer_link_risk:     'Índice de Riesgo',
+    footer_link_impact:   'Impacto',
+    footer_link_compliance:'Cumplimiento',
+    footer_link_roi:      'ROI',
+    footer_link_contact:  'Contacto',
+    footer_link_privacy:  'Política de Privacidad',
+    footer_link_terms:    'Términos de Uso',
+    footer_link_cookies:  'Política de Cookies',
+    footer_copyright:     '© 2026 SALA — Safe-Load Analytics. Todos los derechos reservados.',
+    footer_dev:           'Desarrollado por Digital Solutions',
+    cookie_title:         'Usamos cookies',
+    cookie_desc:          'Usamos cookies para mejorar su experiencia y analizar el rendimiento del sitio. Consulte nuestra <a href="cookies.html">Política de Cookies</a>.',
+    cookie_reject:        'Rechazar',
+    cookie_customize:     'Personalizar',
+    cookie_accept:        'Aceptar Todo'
+  },
+
+  pt: {
+    nav_algorithm:        'Algoritmo',
+    nav_risk:             'Índice de Risco',
+    nav_impact:           'Impacto',
+    nav_compliance:       'Conformidade',
+    nav_roi:              'ROI',
+    nav_demo:             'Solicitar Demo',
+    hero_badge:           'IA Biomecânica para Saúde Ocupacional',
+    hero_title:           'Prevenindo a <span class="gradient-text">Crise de Sykefravær</span> com Inteligência Biomecânica',
+    hero_description:     'SALA é uma plataforma de IA proativa desenvolvida para combater a alta taxa de absenteísmo por distúrbios musculoesqueléticos no transporte. Ao contrário dos sistemas HMS reativos, a SALA intervém antes da lesão — monitorando riscos biomecânicos em tempo real.',
+    hero_cta1:            'Começar',
+    hero_cta2:            'Explorar Tecnologia',
+    stat1_label:          'Redução em licenças musculoesqueléticas',
+    stat2_label:          'Maior carga espinal em superfícies geladas',
+    stat3_label:          'Semana de trabalho norueguesa modelada',
+    stat4_label:          'Conformidade norma vibração ISO 2631-1',
+    algo_label:           'Inovação Central',
+    algo_title:           'O Algoritmo Biomecânico',
+    algo_subtitle:        'SALA calcula o Índice de Risco (R<sub>i</sub>) focado no elemento humano — não apenas no veículo. Nosso algoritmo integra quatro fatores biomecânicos críticos.',
+    algo_c1_title:        'Análise Lombar L5/S1',
+    algo_c1_desc:         'Monitoramento em tempo real da compressão vertebral durante o levantamento. A articulação L5/S1 suporta o maior estresse biomecânico, sendo o ponto crítico para prevenção de lesões.',
+    algo_c2_title:        'Fator de Superfície (S<sub>f</sub>)',
+    algo_c2_desc:         'Os invernos severos da Noruega podem aumentar o esforço de estabilização espinal em até 3×. O algoritmo adapta os limiares de risco em tempo real.',
+    algo_c3_title:        'Exposição a Vibração (ISO 2631-1)',
+    algo_c3_desc:         'Proteção contra vibração de corpo inteiro (VCI) para prevenir fadiga neuromuscular e dor crônica. Monitoramento contínuo alinhado com padrões internacionais.',
+    algo_c4_title:        'Fadiga Acumulada',
+    algo_c4_desc:         'Modelagem baseada no padrão de trabalho norueguês (37,5h/semana) e fatores ambientais. Rastreia a carga acumulada entre turnos para prevenir superexposição crônica.',
+    risk_label:           'Inteligência em Tempo Real',
+    risk_title:           'Painel do Índice de Risco R<sub>i</sub>',
+    risk_subtitle:        'O Índice de Risco sintetiza todos os fatores biomecânicos em uma única métrica acionável, permitindo intervenção imediata antes da ocorrência de lesões.',
+    risk_current_label:   'Nível Atual de Risco Biomecânico',
+    risk_low_title:       'Risco Baixo (0–30)',
+    risk_low_desc:        'Operações normais — continuar procedimentos padrão',
+    risk_mod_title:       'Risco Moderado (31–65)',
+    risk_mod_desc:        'Recomendar assistência mecânica ou divisão de carga',
+    risk_crit_title:      'Risco Crítico (66–100)',
+    risk_crit_desc:       'Intervenção imediata necessária — interromper operação',
+    impact_label:         'Impacto Operacional',
+    impact_title:         'Transformando a Gestão de Segurança',
+    impact_subtitle:      'SALA transforma a segurança ocupacional da conformidade reativa para a prevenção proativa, protegendo trabalhadores enquanto otimiza operações.',
+    impact_c1_title:      'Alertas em Tempo Real',
+    impact_c1_desc:       'Motoristas recebem recomendações estratégicas imediatas — como assistência mecânica ou divisão de cargas — quando o risco atinge níveis críticos.',
+    impact_c2_title:      'Conformidade AML § 4-4',
+    impact_c2_desc:       'O sistema automatiza a conformidade com a Lei do Ambiente de Trabalho norueguesa (Arbeidsmiljøloven), fornecendo dados acionáveis para delegados de segurança (Verneombud).',
+    impact_c3_title:      'ROI Econômico',
+    impact_c3_desc:       'Redução massiva de custos através de licenças médicas (sykemelding) reduzidas, menor rotatividade, prêmios de seguro menores e custos indiretos para empresas e NAV.',
+    compliance_label:     'Marco Legal',
+    compliance_title:     'Desenvolvido para Conformidade Norueguesa',
+    compliance_subtitle:  'Totalmente alinhado com a legislação norueguesa de saúde ocupacional e padrões biomecânicos internacionais.',
+    compliance_aml_title: 'Arbeidsmiljøloven § 4-4',
+    compliance_aml_1:     'Documentação automatizada de avaliações de risco biomecânico',
+    compliance_aml_2:     'Feeds de dados em tempo real para delegados de segurança (Verneombud)',
+    compliance_aml_3:     'Rastreamento de exposição por turno alinhado com o padrão de 37,5h',
+    compliance_aml_4:     'Relatórios prontos para auditoria em inspeções regulatórias',
+    compliance_aml_5:     'Registros de intervenção proativa demonstrando dever de cuidado',
+    compliance_intl_title:'Padrões Internacionais',
+    compliance_intl_1:    'ISO 2631-1: Avaliação de vibração de corpo inteiro',
+    compliance_intl_2:    'NISO 4400: Avaliação ergonômica de risco norueguesa',
+    compliance_intl_3:    'Diretiva UE 90/269/CEE: Manuseio manual de cargas',
+    compliance_intl_4:    'ISO 11228: Diretrizes de manuseio manual',
+    compliance_intl_5:    'EN 1005: Segurança de máquinas — desempenho físico humano',
+    roi_label:            'Retorno sobre Investimento',
+    roi_title:            'Impacto Econômico Mensurável',
+    roi_subtitle:         'SALA entrega economias quantificáveis na redução de licenças, otimização de seguros e retenção de pessoal.',
+    roi_c1_title:         'Licenças Reduzidas',
+    roi_c1_desc:          'Diminuição significativa de ausências por causas musculoesqueléticas (sykemelding) nos primeiros 12 meses de implantação.',
+    roi_c2_title:         'Prêmios de Seguro Menores',
+    roi_c2_desc:          'A redução de riscos baseada em dados qualifica para menores custos de seguro e contribuições ao NAV.',
+    roi_c3_title:         'ROI no Primeiro Ano',
+    roi_c3_desc:          'Retorno médio sobre investimento através de economias em custos médicos, recrutamento e ganhos de produtividade.',
+    cta_title:            'Pronto para Transformar sua <span class="gradient-text">Segurança Ocupacional</span>?',
+    cta_desc:             'Junte-se às principais empresas de transporte norueguesas que já usam SALA para prevenir lesões, garantir conformidade e reduzir custos.',
+    cta_btn1:             'Solicitar uma Demo',
+    cta_btn2:             'Baixar Whitepaper',
+    footer_slogan:        'Inteligência de risco biomecânico com IA para o setor de transporte norueguês.',
+    footer_ql_heading:    'Links Rápidos',
+    footer_social_heading:'Redes Sociais',
+    footer_legal_heading: 'Legal',
+    footer_link_algorithm:'Algoritmo',
+    footer_link_risk:     'Índice de Risco',
+    footer_link_impact:   'Impacto',
+    footer_link_compliance:'Conformidade',
+    footer_link_roi:      'ROI',
+    footer_link_contact:  'Contato',
+    footer_link_privacy:  'Política de Privacidade',
+    footer_link_terms:    'Termos de Uso',
+    footer_link_cookies:  'Política de Cookies',
+    footer_copyright:     '© 2026 SALA — Safe-Load Analytics. Todos os direitos reservados.',
+    footer_dev:           'Desenvolvido por Digital Solutions',
+    cookie_title:         'Usamos cookies',
+    cookie_desc:          'Usamos cookies para melhorar sua experiência e analisar o desempenho do site. Consulte nossa <a href="cookies.html">Política de Cookies</a>.',
+    cookie_reject:        'Rejeitar',
+    cookie_customize:     'Personalizar',
+    cookie_accept:        'Aceitar Tudo'
+  },
+
+  no: {
+    nav_algorithm:        'Algoritme',
+    nav_risk:             'Risikoindeks',
+    nav_impact:           'Innvirkning',
+    nav_compliance:       'Samsvar',
+    nav_roi:              'ROI',
+    nav_demo:             'Be om demo',
+    hero_badge:           'Biomekanisk KI for arbeidshelse',
+    hero_title:           'Forebygger <span class="gradient-text">Sykefraværskrisen</span> med biomekanisk intelligens',
+    hero_description:     'SALA er en proaktiv KI-plattform utviklet for å håndtere den høye frekvensen av fravær på grunn av muskel- og skjelettlidelser i transportsektoren. I motsetning til reaktive HMS-systemer, griper SALA inn før skaden skjer — ved å overvåke biomekaniske risikoer i sanntid.',
+    hero_cta1:            'Kom i gang',
+    hero_cta2:            'Utforsk teknologi',
+    stat1_label:          'Reduksjon i muskel- og skjelettsykefravær',
+    stat2_label:          'Høyere ryggbelastning på isete flater',
+    stat3_label:          'Norsk arbeidsuke-standard modellert',
+    stat4_label:          'ISO 2631-1 vibrasjonsstandard samsvar',
+    algo_label:           'Kjerneinnovasjon',
+    algo_title:           'Den biomekaniske algoritmen',
+    algo_subtitle:        'SALA beregner Risikoindeksen (R<sub>i</sub>) med fokus på det menneskelige elementet — ikke bare kjøretøyet. Vår algoritme integrerer fire kritiske biomekaniske faktorer.',
+    algo_c1_title:        'Lumbal L5/S1-analyse',
+    algo_c1_desc:         'Sanntidsovervåking av vertebral kompresjon under løft av laster. L5/S1-leddet bærer den høyeste biomekaniske belastningen og er det kritiske punktet for skadeforebygging.',
+    algo_c2_title:        'Overflaktefaktor (S<sub>f</sub>)',
+    algo_c2_desc:         'Norges harde vintrer med is og snø kan øke ryggstabiliseringsinnsatsen opptil 3×. Algoritmen tilpasser risikogrensene i sanntid.',
+    algo_c3_title:        'Vibrasjonseksponering (ISO 2631-1)',
+    algo_c3_desc:         'Beskyttelse mot hel-kroppsvibrasjon (HKV) for å forebygge nevromuskulær tretthet og kroniske smerter. Kontinuerlig overvåking i tråd med internasjonale standarder.',
+    algo_c4_title:        'Akkumulert tretthet',
+    algo_c4_desc:         'Modellering basert på norsk arbeidsstandard (37,5t/uke) og miljøbelastninger. Sporer akkumulert belastning over skift for å forebygge kronisk overeksponering.',
+    risk_label:           'Sanntidsintelligens',
+    risk_title:           'Risikoindeks R<sub>i</sub>-dashbord',
+    risk_subtitle:        'Risikoindeksen syntetiserer alle biomekaniske faktorer til én enkelt handlingsbar beregning, noe som muliggjør umiddelbar inngripen før skaden inntreffer.',
+    risk_current_label:   'Nåværende biomekanisk risikonivå',
+    risk_low_title:       'Lav risiko (0–30)',
+    risk_low_desc:        'Normale operasjoner — fortsett standardprosedyrer',
+    risk_mod_title:       'Moderat risiko (31–65)',
+    risk_mod_desc:        'Anbefal mekanisk assistanse eller lastdeling',
+    risk_crit_title:      'Kritisk risiko (66–100)',
+    risk_crit_desc:       'Umiddelbar inngripen kreves — stans operasjonen',
+    impact_label:         'Operasjonell innvirkning',
+    impact_title:         'Transformerer sikkerhetsforvaltning',
+    impact_subtitle:      'SALA skifter yrkessikkerheten fra reaktivt samsvar til proaktiv forebygging, og beskytter arbeidere mens operasjoner optimaliseres.',
+    impact_c1_title:      'Sanntidsvarsler',
+    impact_c1_desc:       'Sjåfører mottar umiddelbare strategiske anbefalinger — som mekanisk assistanse eller lastdeling — når risikoen når kritiske nivåer.',
+    impact_c2_title:      'AML § 4-4-samsvar',
+    impact_c2_desc:       'Systemet automatiserer samsvar med norsk arbeidsmiljølov (Arbeidsmiljøloven) og gir handlingsbar data til verneombud.',
+    impact_c3_title:      'Økonomisk ROI',
+    impact_c3_desc:       'Massiv kostnadsreduksjon gjennom redusert sykefravær (sykemelding), lavere personalomsetning, reduserte forsikringspremier og indirekte kostnader for bedrifter og NAV.',
+    compliance_label:     'Juridisk rammeverk',
+    compliance_title:     'Bygget for norsk samsvar',
+    compliance_subtitle:  'Fullstendig tilpasset norsk lovgivning om yrkeshelse og internasjonale biomekaniske standarder.',
+    compliance_aml_title: 'Arbeidsmiljøloven § 4-4',
+    compliance_aml_1:     'Automatisert dokumentasjon av biomekaniske risikovurderinger',
+    compliance_aml_2:     'Sanntidsdatafeeds for verneombud',
+    compliance_aml_3:     'Eksponeringsoppfølging per skift i henhold til 37,5t-standarden',
+    compliance_aml_4:     'Revisjonsklare rapporter for tilsynsinspeksjoner',
+    compliance_aml_5:     'Proaktive inngrepslogger som dokumenterer omsorgsplikt',
+    compliance_intl_title:'Internasjonale standarder',
+    compliance_intl_1:    'ISO 2631-1: Vurdering av hel-kroppsvibrasjon',
+    compliance_intl_2:    'NISO 4400: Norsk ergonomisk risikovurdering',
+    compliance_intl_3:    'EU-direktiv 90/269/EØF: Manuell håndtering av laster',
+    compliance_intl_4:    'ISO 11228: Retningslinjer for manuell håndtering',
+    compliance_intl_5:    'EN 1005: Maskinsikkerhet — menneskelig fysisk ytelse',
+    roi_label:            'Avkastning på investering',
+    roi_title:            'Målbart økonomisk resultat',
+    roi_subtitle:         'SALA leverer kvantifiserbare besparelser innen sykefraværsreduksjon, forsikringsoptimalisering og personalretensjon.',
+    roi_c1_title:         'Redusert sykefravær',
+    roi_c1_desc:          'Betydelig nedgang i muskel- og skjelettrelatert fravær (sykemelding) i løpet av de første 12 månedene etter implementering.',
+    roi_c2_title:         'Lavere forsikringspremier',
+    roi_c2_desc:          'Datadrevet risikoreduksjon kvalifiserer for reduserte yrkesskadetrygdkostnader og NAV-bidrag.',
+    roi_c3_title:         'ROI i første år',
+    roi_c3_desc:          'Gjennomsnittlig avkastning gjennom kombinerte besparelser i medisinske kostnader, rekruttering og produktivitetsgevinster.',
+    cta_title:            'Klar til å transformere din <span class="gradient-text">yrkessikkerhet</span>?',
+    cta_desc:             'Bli med ledende norske transportbedrifter som allerede bruker SALA for å forebygge skader, sikre samsvar og redusere kostnader.',
+    cta_btn1:             'Be om en demo',
+    cta_btn2:             'Last ned whitepaper',
+    footer_slogan:        'KI-drevet biomekanisk risikoanalyse for norsk transportsektor.',
+    footer_ql_heading:    'Hurtiglenker',
+    footer_social_heading:'Sosiale medier',
+    footer_legal_heading: 'Juridisk',
+    footer_link_algorithm:'Algoritme',
+    footer_link_risk:     'Risikoindeks',
+    footer_link_impact:   'Innvirkning',
+    footer_link_compliance:'Samsvar',
+    footer_link_roi:      'ROI',
+    footer_link_contact:  'Kontakt',
+    footer_link_privacy:  'Personvernerklæring',
+    footer_link_terms:    'Bruksvilkår',
+    footer_link_cookies:  'Informasjonskapselpolicy',
+    footer_copyright:     '© 2026 SALA — Safe-Load Analytics. Alle rettigheter forbeholdt.',
+    footer_dev:           'Utviklet av Digital Solutions',
+    cookie_title:         'Vi bruker informasjonskapsler',
+    cookie_desc:          'Vi bruker informasjonskapsler for å forbedre opplevelsen din og analysere nettstedets ytelse. Se vår <a href="cookies.html">informasjonskapsel-policy</a>.',
+    cookie_reject:        'Avvis',
+    cookie_customize:     'Tilpass',
+    cookie_accept:        'Godta alle'
+  }
+};
+
+// Flag SVG markup per language (used to update the button icon)
+const flagSVGs = {
+  en: `<rect width="22" height="14" fill="#012169"/><path d="M0,0 L22,14 M22,0 L0,14" stroke="#fff" stroke-width="3"/><path d="M0,0 L22,14 M22,0 L0,14" stroke="#C8102E" stroke-width="2"/><path d="M11,0 V14 M0,7 H22" stroke="#fff" stroke-width="5"/><path d="M11,0 V14 M0,7 H22" stroke="#C8102E" stroke-width="3"/>`,
+  es: `<rect width="22" height="14" fill="#AA151B"/><rect y="3.5" width="22" height="7" fill="#F1BF00"/>`,
+  pt: `<rect width="22" height="14" fill="#009C3B"/><rect x="7.5" width="14.5" height="14" fill="#FEDF00"/><circle cx="11" cy="7" r="3.2" fill="#002776"/>`,
+  no: `<rect width="22" height="14" fill="#EF2B2D"/><rect x="5" width="4" height="14" fill="white"/><rect y="5" width="22" height="4" fill="white"/><rect x="6" width="2" height="14" fill="#002868"/><rect y="6" width="22" height="2" fill="#002868"/>`
+};
+
+let currentLang = localStorage.getItem('sala_lang') || 'en';
+
+function applyLang(lang) {
+  const t = translations[lang];
+  if (!t) return;
+
+  // Update <html lang> attribute
+  document.documentElement.lang = lang;
+
+  // Update all data-i18n elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) {
+      el.innerHTML = t[key];
+    }
+  });
+
+  // Update cookie banner description (contains a link — handled separately)
+  const cookieDesc = document.getElementById('cookieBannerDesc');
+  if (cookieDesc) {
+    cookieDesc.innerHTML = t.cookie_desc;
+  }
+
+  // Update lang button label and flag
+  document.getElementById('langLabel').textContent = lang.toUpperCase();
+  document.getElementById('currentFlag').innerHTML = flagSVGs[lang];
+
+  // Update active state on dropdown options
+  document.querySelectorAll('.lang-option').forEach(option => {
+    const isActive = option.dataset.lang === lang;
+    option.classList.toggle('active', isActive);
+    option.setAttribute('aria-selected', isActive);
+  });
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('sala_lang', lang);
+  applyLang(lang);
+  closeLangDropdown();
+}
+
+function toggleLangDropdown() {
+  const dropdown = document.getElementById('langDropdown');
+  const btn = document.getElementById('langSelectorBtn');
+  const isOpen = dropdown.classList.contains('open');
+
+  dropdown.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+  btn.setAttribute('aria-expanded', !isOpen);
+}
+
+function closeLangDropdown() {
+  const dropdown = document.getElementById('langDropdown');
+  const btn = document.getElementById('langSelectorBtn');
+  dropdown.classList.remove('open');
+  btn.classList.remove('open');
+  btn.setAttribute('aria-expanded', 'false');
+}
+
+// Open/close on button click
+document.getElementById('langSelectorBtn').addEventListener('click', (e) => {
+  e.stopPropagation();
+  toggleLangDropdown();
+});
+
+// Select language on option click
+document.querySelectorAll('.lang-option').forEach(option => {
+  option.addEventListener('click', () => {
+    setLang(option.dataset.lang);
+  });
+});
+
+// Close when clicking outside
+document.addEventListener('click', (e) => {
+  if (!document.getElementById('langSelector').contains(e.target)) {
+    closeLangDropdown();
+  }
+});
+
+// Close on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeLangDropdown();
+  }
+});
+
+// Initialise language on page load
+applyLang(currentLang);
+
+
+// ─── Cookie Banner ────────────────────────────────────────────────────────────
+
+function handleCookieChoice(choice) {
+  localStorage.setItem('sala_cookie', choice);
+  document.getElementById('cookieBanner').classList.remove('visible');
+}
+
+// Show banner if no choice has been made yet
+if (!localStorage.getItem('sala_cookie')) {
+  setTimeout(() => {
+    document.getElementById('cookieBanner').classList.add('visible');
+  }, 1200);
+}
 </script>
 </body>
 </html>
-
