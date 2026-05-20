@@ -3031,13 +3031,12 @@ function cookieSaveChoice() {
   document.getElementById('cookie-banner').classList.remove('show');
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  if (!localStorage.getItem('sala_cookie')) {
-    setTimeout(() => {
-      document.getElementById('cookie-banner').classList.add('show');
-    }, 1200);
-  }
-});
+// Show banner after 1.2s if no choice made yet
+if (!localStorage.getItem('sala_cookie')) {
+  setTimeout(() => {
+    document.getElementById('cookie-banner').classList.add('show');
+  }, 1200);
+}
 </script>
 </body>
 </html>
