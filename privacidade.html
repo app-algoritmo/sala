@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <!-- FAVICON SALA -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content=“SALA” />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#c44536" />
+  
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SALA • Privacy Policy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#0A1628;--primary-light:#132240;--accent:#00D4AA;--accent-glow:rgba(0,212,170,0.3);--accent-secondary:#0088FF;--text:#E8EDF5;--text-muted:#8892A8;--text-dim:#5A6478;--surface:#0D1A30;--surface-light:#162544;--border:rgba(255,255,255,0.06);--gradient-1:linear-gradient(135deg,#00D4AA 0%,#0088FF 100%)}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--primary);color:var(--text);line-height:1.6;overflow-x:hidden}
+::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:var(--primary)}::-webkit-scrollbar-thumb{background:var(--surface-light);border-radius:4px}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(20px);background:rgba(10,22,40,0.9);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:0.75rem;text-decoration:none}
+.nav-logo-icon{width:38px;height:38px;background:var(--gradient-1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;color:var(--primary)}
+.nav-logo-text{font-size:1.25rem;font-weight:700;color:var(--text);letter-spacing:2px}
+.nav-right{display:flex;align-items:center}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-size:0.9rem;font-weight:500;transition:color 0.3s}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{padding:0.6rem 1.5rem;background:var(--gradient-1);color:var(--primary)!important;border-radius:8px;font-weight:600!important;font-size:0.85rem!important}
+.lang-selector{position:relative;margin-left:1.5rem}
+.lang-btn{background:transparent;border:1px solid var(--border);color:var(--text-muted);padding:0.38rem 0.8rem;border-radius:6px;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.25s;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:0.4rem}
+.lang-btn:hover,.lang-btn.open{border-color:var(--accent);color:var(--accent);background:rgba(0,212,170,0.07)}
+.lang-dropdown{position:absolute;top:calc(100% + 8px);right:0;background:#0f1e36;border:1px solid rgba(0,212,170,0.15);border-radius:10px;overflow:hidden;min-width:148px;box-shadow:0 16px 48px rgba(0,0,0,0.6);opacity:0;pointer-events:none;transform:translateY(-8px);transition:all 0.22s ease;z-index:300}
+.lang-dropdown.open{opacity:1;pointer-events:all;transform:translateY(0)}
+.lang-option{display:flex;align-items:center;gap:0.65rem;padding:0.7rem 1rem;cursor:pointer;font-size:0.85rem;color:var(--text-muted);transition:all 0.2s;border:none;background:transparent;width:100%;text-align:left;font-family:'Inter',sans-serif}
+.lang-option:hover{background:rgba(0,212,170,0.07);color:var(--text)}
+.lang-option.active{color:var(--accent);background:rgba(0,212,170,0.06)}
+.lang-flag{width:22px;height:14px;border-radius:2px;overflow:hidden;flex-shrink:0;display:inline-flex}
+.mobile-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:5px;margin-left:1rem}
+.mobile-toggle span{width:24px;height:2px;background:var(--text);transition:all 0.3s}
+.back-btn{position:fixed;top:90px;left:1.5rem;z-index:100;display:flex;align-items:center;gap:0.5rem;padding:0.5rem 1rem;background:rgba(13,26,48,0.9);border:1px solid var(--border);border-radius:8px;color:var(--text-muted);text-decoration:none;font-size:0.8rem;font-weight:500;transition:all 0.25s;backdrop-filter:blur(10px)}
+.back-btn:hover{border-color:var(--accent);color:var(--accent)}
+/* LEGAL LAYOUT */
+.legal-wrap{max-width:820px;margin:0 auto;padding:9rem 2rem 6rem;display:grid;grid-template-columns:220px 1fr;gap:3rem;align-items:start}
+.toc{position:sticky;top:100px}
+.toc h4{font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-dim);margin-bottom:1rem}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:0.4rem}
+.toc-list a{font-size:0.82rem;color:var(--text-muted);text-decoration:none;padding:0.3rem 0;display:block;border-left:2px solid transparent;padding-left:0.75rem;transition:all 0.2s}
+.toc-list a:hover,.toc-list a.active{color:var(--accent);border-left-color:var(--accent)}
+.legal-content{}
+.legal-header{margin-bottom:3rem}
+.legal-header .page-label{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:0.75rem}
+.legal-header .page-label::before{content:'';width:20px;height:2px;background:var(--accent)}
+.legal-header h1{font-size:2.2rem;font-weight:800;margin-bottom:0.75rem}
+.gradient-text{background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.legal-meta{font-size:0.82rem;color:var(--text-dim);font-family:'JetBrains Mono',monospace}
+.legal-section{margin-bottom:2.5rem;scroll-margin-top:100px}
+.legal-section h2{font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:0.85rem;padding-bottom:0.6rem;border-bottom:1px solid var(--border)}
+.legal-section p{font-size:0.9rem;color:var(--text-muted);line-height:1.8;margin-bottom:0.85rem}
+.legal-section ul{list-style:none;display:flex;flex-direction:column;gap:0.5rem;margin-bottom:0.85rem}
+.legal-section ul li{font-size:0.9rem;color:var(--text-muted);padding-left:1.25rem;position:relative;line-height:1.7}
+.legal-section ul li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:600}
+.legal-section a{color:var(--accent);text-decoration:none}
+.legal-highlight{background:rgba(0,212,170,0.06);border:1px solid rgba(0,212,170,0.15);border-radius:10px;padding:1rem 1.25rem;margin-bottom:0.85rem}
+.legal-highlight p{margin:0;font-size:0.88rem}
+/* FOOTER */
+footer{background:var(--surface);border-top:1px solid var(--border)}
+.footer-main{max-width:1200px;margin:0 auto;padding:4rem 2rem 3rem;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem}
+.footer-brand{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;text-decoration:none}
+.footer-logo-icon{width:40px;height:40px;background:var(--gradient-1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;color:var(--primary);flex-shrink:0}
+.footer-brand-name{font-size:1.2rem;font-weight:700;letter-spacing:2px;color:var(--text)}
+.footer-slogan{font-size:0.875rem;color:var(--text-muted);line-height:1.7;max-width:280px;margin-bottom:1.5rem}
+.footer-safelast{font-size:0.78rem;color:var(--text-dim)}.footer-safelast a{color:var(--accent);text-decoration:none}
+.footer-col h4{font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text);margin-bottom:1.25rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:0.6rem}
+.footer-col ul a{color:var(--text-muted);text-decoration:none;font-size:0.875rem;transition:color 0.25s}
+.footer-col ul a:hover{color:var(--accent)}
+.footer-social-link{display:flex;align-items:center;gap:0.6rem;color:var(--text-muted);text-decoration:none;font-size:0.875rem;transition:color 0.25s;margin-bottom:0.6rem}
+.footer-social-link:hover{color:var(--accent)}
+.footer-social-link svg{width:15px;height:15px;fill:currentColor;flex-shrink:0}
+.footer-bottom{border-top:1px solid var(--border);padding:1.4rem 2rem}
+.footer-bottom-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.footer-copyright{font-size:0.79rem;color:var(--text-dim)}.footer-devlink{font-size:0.79rem;color:var(--text-dim)}.footer-devlink a{color:#c9a84c;text-decoration:none}
+/* COOKIE */
+.cookie-banner{position:fixed;bottom:-220px;left:50%;transform:translateX(-50%);width:calc(100% - 2rem);max-width:920px;background:linear-gradient(135deg,#0c1b30 0%,#0f2040 100%);border:1px solid rgba(0,212,170,0.2);border-radius:16px;padding:1.5rem 2rem;z-index:9999;box-shadow:0 -4px 60px rgba(0,0,0,0.5);display:flex;align-items:center;gap:1.75rem;transition:bottom 0.65s cubic-bezier(0.34,1.4,0.64,1)}
+.cookie-banner.visible{bottom:1.5rem}
+.cookie-icon{width:46px;height:46px;background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.4rem}
+.cookie-content{flex:1;min-width:0}.cookie-content h4{font-size:0.9rem;font-weight:700;color:var(--text);margin-bottom:0.3rem}
+.cookie-content p{font-size:0.8rem;color:var(--text-muted);line-height:1.6}.cookie-content p a{color:var(--accent);text-decoration:none}
+.cookie-actions{display:flex;gap:0.55rem;flex-shrink:0;flex-wrap:wrap}
+.cookie-btn{padding:0.55rem 1.1rem;border-radius:8px;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.25s;font-family:'Inter',sans-serif;white-space:nowrap;border:none}
+.cookie-btn-reject{background:transparent;color:var(--text-muted);border:1px solid var(--border)!important}
+.cookie-btn-customize{background:transparent;color:var(--accent);border:1px solid rgba(0,212,170,0.3)!important}
+.cookie-btn-accept{background:var(--gradient-1);color:var(--primary)}
+@media(max-width:900px){.legal-wrap{grid-template-columns:1fr}.toc{display:none}.footer-main{grid-template-columns:1fr 1fr;gap:2rem}}
+@media(max-width:768px){.nav-links{display:none}.mobile-toggle{display:flex}.lang-selector{display:none}.footer-main{grid-template-columns:1fr}.footer-bottom-inner{flex-direction:column;text-align:center}.cookie-banner{flex-direction:column;gap:1rem;text-align:center}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo"><div class="nav-logo-icon">SL</div><span class="nav-logo-text">SALA</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="index.html#algorithm" data-i18n="nav_algorithm">Algorithm</a></li>
+      <li><a href="index.html#risk" data-i18n="nav_risk">Risk Index</a></li>
+      <li><a href="index.html#impact" data-i18n="nav_impact">Impact</a></li>
+      <li><a href="index.html#compliance" data-i18n="nav_compliance">Compliance</a></li>
+      <li><a href="contato.html" class="nav-cta" data-i18n="nav_demo">Request Demo</a></li>
+    </ul>
+    <div class="lang-selector" id="langSelector">
+      <button class="lang-btn" id="langBtn" onclick="toggleLang()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="langLabel">EN</span>
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="lang-dropdown" id="langDropdown">
+        <button class="lang-option active" onclick="setLang('en')"><svg class="lang-flag" viewBox="0 0 22 14"><rect width="22" height="14" fill="#012169"/><path d="M0,0 L22,14 M22,0 L0,14" stroke="#fff" stroke-width="3"/><path d="M0,0 L22,14 M22,0 L0,14" stroke="#C8102E" stroke-width="2"/><path d="M11,0 V14 M0,7 H22" stroke="#fff" stroke-width="5"/><path d="M11,0 V14 M0,7 H22" stroke="#C8102E" stroke-width="3"/></svg>English</button>
+        <button class="lang-option" onclick="setLang('es')"><svg class="lang-flag" viewBox="0 0 22 14"><rect width="22" height="14" fill="#AA151B"/><rect y="3.5" width="22" height="7" fill="#F1BF00"/></svg>Español</button>
+        <button class="lang-option" onclick="setLang('pt')"><svg class="lang-flag" viewBox="0 0 22 14"><rect width="22" height="14" fill="#009C3B"/><rect x="7.5" width="14.5" height="14" fill="#FEDF00"/><circle cx="11" cy="7" r="3.2" fill="#002776"/></svg>Português</button>
+        <button class="lang-option" onclick="setLang('no')"><svg class="lang-flag" viewBox="0 0 22 14"><rect width="22" height="14" fill="#EF2B2D"/><rect x="5" width="4" height="14" fill="white"/><rect y="5" width="22" height="4" fill="white"/><rect x="6" width="2" height="14" fill="#002868"/><rect y="6" width="22" height="2" fill="#002868"/></svg>Norsk</button>
+      </div>
+    </div>
+    <button class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<a href="index.html" class="back-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg><span data-i18n="back">Back</span></a>
+
+<div class="legal-wrap">
+  <aside class="toc">
+    <h4 data-i18n="toc_title">Contents</h4>
+    <ul class="toc-list" id="tocList">
+      <li><a href="#s1" data-i18n="toc_s1">1. Controller</a></li>
+      <li><a href="#s2" data-i18n="toc_s2">2. Data Collected</a></li>
+      <li><a href="#s3" data-i18n="toc_s3">3. Purpose & Legal Basis</a></li>
+      <li><a href="#s4" data-i18n="toc_s4">4. Data Retention</a></li>
+      <li><a href="#s5" data-i18n="toc_s5">5. Your Rights</a></li>
+      <li><a href="#s6" data-i18n="toc_s6">6. Cookies</a></li>
+      <li><a href="#s7" data-i18n="toc_s7">7. Contact</a></li>
+    </ul>
+  </aside>
+
+  <main class="legal-content">
+    <div class="legal-header">
+      <div class="page-label" data-i18n="priv_label">Legal</div>
+      <h1 data-i18n="priv_title"><span class="gradient-text">Privacy</span> Policy</h1>
+      <p class="legal-meta" data-i18n="priv_updated">Last updated: 01 January 2026</p>
+    </div>
+
+    <div class="legal-section" id="s1">
+      <h2 data-i18n="s1_title">1. Data Controller</h2>
+      <p data-i18n="s1_p1">SALA — Safe-Load Analytics is operated by Paulo Fernando de Barros, based in Larvik, Norway. For all data protection enquiries, please contact <a href="mailto:paulo@barros.no">paulo@barros.no</a>.</p>
+      <div class="legal-highlight"><p data-i18n="s1_note">Processing of personal data is conducted in accordance with the EU General Data Protection Regulation (GDPR) and the Norwegian Personal Data Act (Personopplysningsloven).</p></div>
+    </div>
+
+    <div class="legal-section" id="s2">
+      <h2 data-i18n="s2_title">2. Data We Collect</h2>
+      <p data-i18n="s2_intro">We may collect the following categories of personal data when you use the SALA platform or website:</p>
+      <ul>
+        <li data-i18n="s2_i1">Contact information (name, email address, company name)</li>
+        <li data-i18n="s2_i2">Professional information (job title, sector, company size)</li>
+        <li data-i18n="s2_i3">Usage data (pages visited, time spent, interactions)</li>
+        <li data-i18n="s2_i4">Technical data (IP address, browser type, device type)</li>
+        <li data-i18n="s2_i5">Occupational data submitted through the SALA platform (anonymized biomechanical metrics)</li>
+      </ul>
+    </div>
+
+    <div class="legal-section" id="s3">
+      <h2 data-i18n="s3_title">3. Purpose & Legal Basis</h2>
+      <p data-i18n="s3_intro">We process your data for the following purposes:</p>
+      <ul>
+        <li data-i18n="s3_i1">Providing and improving the SALA platform (legitimate interest / contract)</li>
+        <li data-i18n="s3_i2">Responding to demo requests and enquiries (contract / consent)</li>
+        <li data-i18n="s3_i3">Ensuring compliance with Norwegian occupational safety law (legal obligation)</li>
+        <li data-i18n="s3_i4">Analytics to understand platform usage (legitimate interest)</li>
+        <li data-i18n="s3_i5">Marketing communications, where consent has been given (consent)</li>
+      </ul>
+    </div>
+
+    <div class="legal-section" id="s4">
+      <h2 data-i18n="s4_title">4. Data Retention</h2>
+      <p data-i18n="s4_p1">We retain personal data only as long as necessary for the purposes described above. Contact form submissions are retained for 24 months. Platform usage data is retained for 12 months. Anonymized analytics data may be retained indefinitely.</p>
+    </div>
+
+    <div class="legal-section" id="s5">
+      <h2 data-i18n="s5_title">5. Your Rights (GDPR)</h2>
+      <p data-i18n="s5_intro">Under the GDPR you have the following rights:</p>
+      <ul>
+        <li data-i18n="s5_i1">Right of access — request a copy of your personal data</li>
+        <li data-i18n="s5_i2">Right to rectification — correct inaccurate data</li>
+        <li data-i18n="s5_i3">Right to erasure — request deletion of your data</li>
+        <li data-i18n="s5_i4">Right to restrict processing</li>
+        <li data-i18n="s5_i5">Right to data portability</li>
+        <li data-i18n="s5_i6">Right to object to processing based on legitimate interests</li>
+      </ul>
+      <p data-i18n="s5_complaint">You may also lodge a complaint with Datatilsynet (the Norwegian Data Protection Authority) at <a href="https://www.datatilsynet.no" target="_blank">datatilsynet.no</a>.</p>
+    </div>
+
+    <div class="legal-section" id="s6">
+      <h2 data-i18n="s6_title">6. Cookies</h2>
+      <p data-i18n="s6_p1">We use cookies to ensure the website functions correctly and to understand how visitors use it. For detailed information, see our <a href="cookies.html" data-i18n="s6_link">Cookie Policy</a>.</p>
+    </div>
+
+    <div class="legal-section" id="s7">
+      <h2 data-i18n="s7_title">7. Contact</h2>
+      <p data-i18n="s7_p1">For any privacy-related enquiries, please contact us at <a href="mailto:paulo@barros.no">paulo@barros.no</a> or through the <a href="contato.html" data-i18n="s7_form">contact form</a>.</p>
+    </div>
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-main">
+    <div class="footer-col"><a href="index.html" class="footer-brand"><div class="footer-logo-icon">SL</div><span class="footer-brand-name">SALA</span></a><p class="footer-slogan" data-i18n="footer_slogan">AI-powered biomechanical risk intelligence for the Norwegian transport sector.</p><p class="footer-safelast">Part of <a href="https://sala.safelast.no" target="_blank">SafeLast</a> ecosystem</p></div>
+    <div class="footer-col"><h4 data-i18n="footer_ql">Quick Links</h4><ul><li><a href="index.html#algorithm" data-i18n="nav_algorithm">Algorithm</a></li><li><a href="index.html#risk" data-i18n="nav_risk">Risk Index</a></li><li><a href="index.html#impact" data-i18n="nav_impact">Impact</a></li><li><a href="index.html#compliance" data-i18n="nav_compliance">Compliance</a></li><li><a href="contato.html" data-i18n="footer_contact">Contact</a></li></ul></div>
+    <div class="footer-col"><h4 data-i18n="footer_social">Social Media</h4><a class="footer-social-link" href="https://www.linkedin.com/in/paulofernandodebarros" target="_blank"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a><a class="footer-social-link" href="https://x.com/paulofdbarros" target="_blank"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X (Twitter)</a><a class="footer-social-link" href="https://barros.no" target="_blank"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>barros.no</a></div>
+    <div class="footer-col"><h4 data-i18n="footer_legal">Legal</h4><ul><li><a href="privacidade.html" data-i18n="footer_privacy">Privacy Policy</a></li><li><a href="termos.html" data-i18n="footer_terms">Terms of Use</a></li><li><a href="cookies.html" data-i18n="footer_cookies">Cookie Policy</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><div class="footer-bottom-inner"><span class="footer-copyright" data-i18n="footer_copy">© 2026 SALA — Safe-Load Analytics. All rights reserved.</span><span class="footer-devlink"><span data-i18n="footer_dev">Developed by</span> <a href="https://ds.barros.no" target="_blank">Digital Solutions</a></span></div></div>
+</footer>
+
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-icon">🍪</div>
+  <div class="cookie-content"><h4 data-i18n="ck_title">We use cookies</h4><p id="ck_desc">We use cookies to improve your experience. See our <a href="cookies.html">Cookie Policy</a>.</p></div>
+  <div class="cookie-actions"><button class="cookie-btn cookie-btn-reject" onclick="cookieChoice('reject')" data-i18n="ck_reject">Reject</button><button class="cookie-btn cookie-btn-customize" onclick="location.href='cookies.html'" data-i18n="ck_custom">Customize</button><button class="cookie-btn cookie-btn-accept" onclick="cookieChoice('accept')" data-i18n="ck_accept">Accept All</button></div>
+</div>
+
+<script>
+const T={
+  en:{nav_algorithm:"Algorithm",nav_risk:"Risk Index",nav_impact:"Impact",nav_compliance:"Compliance",nav_demo:"Request Demo",back:"Back",toc_title:"Contents",toc_s1:"1. Controller",toc_s2:"2. Data Collected",toc_s3:"3. Purpose & Legal Basis",toc_s4:"4. Data Retention",toc_s5:"5. Your Rights",toc_s6:"6. Cookies",toc_s7:"7. Contact",priv_label:"Legal",priv_title:"<span class='gradient-text'>Privacy</span> Policy",priv_updated:"Last updated: 01 January 2026",s1_title:"1. Data Controller",s1_p1:'SALA — Safe-Load Analytics is operated by Paulo Fernando de Barros, based in Larvik, Norway. Contact: <a href="mailto:paulo@barros.no">paulo@barros.no</a>.',s1_note:"Processing of personal data is conducted in accordance with GDPR and the Norwegian Personal Data Act (Personopplysningsloven).",s2_title:"2. Data We Collect",s2_intro:"We may collect the following categories of personal data:",s2_i1:"Contact information (name, email, company name)",s2_i2:"Professional information (job title, sector)",s2_i3:"Usage data (pages visited, time spent, interactions)",s2_i4:"Technical data (IP address, browser type, device type)",s2_i5:"Occupational data via the SALA platform (anonymized biomechanical metrics)",s3_title:"3. Purpose & Legal Basis",s3_intro:"We process your data for the following purposes:",s3_i1:"Providing and improving SALA (legitimate interest / contract)",s3_i2:"Responding to demo requests (contract / consent)",s3_i3:"Ensuring compliance with Norwegian safety law (legal obligation)",s3_i4:"Analytics to understand platform usage (legitimate interest)",s3_i5:"Marketing communications, where consent has been given (consent)",s4_title:"4. Data Retention",s4_p1:"Contact form submissions are retained for 24 months. Platform usage data for 12 months. Anonymized analytics data may be retained indefinitely.",s5_title:"5. Your Rights (GDPR)",s5_intro:"Under GDPR you have the right to:",s5_i1:"Access — request a copy of your personal data",s5_i2:"Rectification — correct inaccurate data",s5_i3:"Erasure — request deletion of your data",s5_i4:"Restrict processing",s5_i5:"Data portability",s5_i6:"Object to processing based on legitimate interests",s5_complaint:'Complaints may be lodged with Datatilsynet at <a href="https://www.datatilsynet.no" target="_blank">datatilsynet.no</a>.',s6_title:"6. Cookies",s6_p1:'We use cookies to ensure the website functions correctly. See our <a href="cookies.html">Cookie Policy</a>.',s6_link:"Cookie Policy",s7_title:"7. Contact",s7_p1:'For privacy enquiries contact <a href="mailto:paulo@barros.no">paulo@barros.no</a> or use the <a href="contato.html">contact form</a>.',s7_form:"contact form",footer_slogan:"AI-powered biomechanical risk intelligence for the Norwegian transport sector.",footer_ql:"Quick Links",footer_social:"Social Media",footer_legal:"Legal",footer_contact:"Contact",footer_privacy:"Privacy Policy",footer_terms:"Terms of Use",footer_cookies:"Cookie Policy",footer_copy:"© 2026 SALA — Safe-Load Analytics. All rights reserved.",footer_dev:"Developed by",ck_title:"We use cookies",ck_desc:'We use cookies to improve your experience. See our <a href="cookies.html">Cookie Policy</a>.',ck_reject:"Reject",ck_custom:"Customize",ck_accept:"Accept All"},
+  es:{nav_algorithm:"Algoritmo",nav_risk:"Índice de Riesgo",nav_impact:"Impacto",nav_compliance:"Cumplimiento",nav_demo:"Solicitar Demo",back:"Volver",toc_title:"Contenido",toc_s1:"1. Responsable",toc_s2:"2. Datos Recogidos",toc_s3:"3. Finalidad y Base",toc_s4:"4. Retención",toc_s5:"5. Sus Derechos",toc_s6:"6. Cookies",toc_s7:"7. Contacto",priv_label:"Legal",priv_title:"Política de <span class='gradient-text'>Privacidad</span>",priv_updated:"Última actualización: 01 de enero de 2026",s1_title:"1. Responsable del Tratamiento",s1_p1:'SALA es operado por Paulo Fernando de Barros, con sede en Larvik, Noruega. Contacto: <a href="mailto:paulo@barros.no">paulo@barros.no</a>.',s1_note:"El tratamiento de datos se realiza conforme al RGPD y la ley noruega de datos personales.",s2_title:"2. Datos que Recopilamos",s2_intro:"Podemos recopilar las siguientes categorías de datos personales:",s2_i1:"Información de contacto (nombre, correo, empresa)",s2_i2:"Información profesional (cargo, sector)",s2_i3:"Datos de uso (páginas visitadas, tiempo, interacciones)",s2_i4:"Datos técnicos (IP, tipo de navegador, dispositivo)",s2_i5:"Datos ocupacionales via plataforma SALA (métricas biomecánicas anonimizadas)",s3_title:"3. Finalidad y Base Legal",s3_intro:"Tratamos sus datos con las siguientes finalidades:",s3_i1:"Prestar y mejorar SALA (interés legítimo / contrato)",s3_i2:"Responder solicitudes de demo (contrato / consentimiento)",s3_i3:"Cumplir con la ley de seguridad laboral noruega (obligación legal)",s3_i4:"Analítica de uso de plataforma (interés legítimo)",s3_i5:"Comunicaciones de marketing cuando se ha dado consentimiento",s4_title:"4. Retención de Datos",s4_p1:"Los formularios de contacto se conservan 24 meses. Los datos de uso de plataforma, 12 meses. Los datos analíticos anonimizados pueden conservarse indefinidamente.",s5_title:"5. Sus Derechos (RGPD)",s5_intro:"Bajo el RGPD usted tiene derecho a:",s5_i1:"Acceso — solicitar copia de sus datos personales",s5_i2:"Rectificación — corregir datos inexactos",s5_i3:"Supresión — solicitar la eliminación de sus datos",s5_i4:"Limitación del tratamiento",s5_i5:"Portabilidad de datos",s5_i6:"Oponerse al tratamiento basado en intereses legítimos",s5_complaint:'Puede presentar reclamaciones ante Datatilsynet en <a href="https://www.datatilsynet.no" target="_blank">datatilsynet.no</a>.',s6_title:"6. Cookies",s6_p1:'Usamos cookies para que el sitio web funcione correctamente. Consulte nuestra <a href="cookies.html">Política de Cookies</a>.',s6_link:"Política de Cookies",s7_title:"7. Contacto",s7_p1:'Para consultas sobre privacidad contacte a <a href="mailto:paulo@barros.no">paulo@barros.no</a> o use el <a href="contato.html">formulario de contacto</a>.',s7_form:"formulario de contacto",footer_slogan:"Inteligencia de riesgo biomecánico con IA para el transporte noruego.",footer_ql:"Enlaces Rápidos",footer_social:"Redes Sociales",footer_legal:"Legal",footer_contact:"Contacto",footer_privacy:"Política de Privacidad",footer_terms:"Términos de Uso",footer_cookies:"Política de Cookies",footer_copy:"© 2026 SALA — Safe-Load Analytics. Todos los derechos reservados.",footer_dev:"Desarrollado por",ck_title:"Usamos cookies",ck_desc:'Usamos cookies para mejorar su experiencia. Consulte nuestra <a href="cookies.html">Política de Cookies</a>.',ck_reject:"Rechazar",ck_custom:"Personalizar",ck_accept:"Aceptar Todo"},
+  pt:{nav_algorithm:"Algoritmo",nav_risk:"Índice de Risco",nav_impact:"Impacto",nav_compliance:"Conformidade",nav_demo:"Solicitar Demo",back:"Voltar",toc_title:"Conteúdo",toc_s1:"1. Controlador",toc_s2:"2. Dados Coletados",toc_s3:"3. Finalidade e Base",toc_s4:"4. Retenção",toc_s5:"5. Seus Direitos",toc_s6:"6. Cookies",toc_s7:"7. Contato",priv_label:"Legal",priv_title:"Política de <span class='gradient-text'>Privacidade</span>",priv_updated:"Última atualização: 01 de janeiro de 2026",s1_title:"1. Controlador de Dados",s1_p1:'SALA é operado por Paulo Fernando de Barros, com sede em Larvik, Noruega. Contato: <a href="mailto:paulo@barros.no">paulo@barros.no</a>.',s1_note:"O tratamento de dados pessoais é realizado em conformidade com o RGPD e a lei norueguesa de dados pessoais (Personopplysningsloven).",s2_title:"2. Dados que Coletamos",s2_intro:"Podemos coletar as seguintes categorias de dados pessoais:",s2_i1:"Informações de contato (nome, e-mail, empresa)",s2_i2:"Informações profissionais (cargo, setor)",s2_i3:"Dados de uso (páginas visitadas, tempo, interações)",s2_i4:"Dados técnicos (IP, tipo de navegador, dispositivo)",s2_i5:"Dados ocupacionais via plataforma SALA (métricas biomecânicas anonimizadas)",s3_title:"3. Finalidade e Base Legal",s3_intro:"Tratamos seus dados para as seguintes finalidades:",s3_i1:"Fornecer e melhorar o SALA (interesse legítimo / contrato)",s3_i2:"Responder solicitações de demo (contrato / consentimento)",s3_i3:"Cumprir com a lei norueguesa de segurança do trabalho (obrigação legal)",s3_i4:"Análise de uso da plataforma (interesse legítimo)",s3_i5:"Comunicações de marketing, quando o consentimento foi dado",s4_title:"4. Retenção de Dados",s4_p1:"Formulários de contato são retidos por 24 meses. Dados de uso da plataforma por 12 meses. Dados de análise anonimizados podem ser retidos indefinidamente.",s5_title:"5. Seus Direitos (RGPD)",s5_intro:"Sob o RGPD você tem direito a:",s5_i1:"Acesso — solicitar cópia dos seus dados pessoais",s5_i2:"Retificação — corrigir dados imprecisos",s5_i3:"Apagamento — solicitar a exclusão dos seus dados",s5_i4:"Restrição de processamento",s5_i5:"Portabilidade de dados",s5_i6:"Oposição ao processamento baseado em interesses legítimos",s5_complaint:'Reclamações podem ser apresentadas ao Datatilsynet em <a href="https://www.datatilsynet.no" target="_blank">datatilsynet.no</a>.',s6_title:"6. Cookies",s6_p1:'Usamos cookies para garantir o funcionamento do site. Consulte nossa <a href="cookies.html">Política de Cookies</a>.',s6_link:"Política de Cookies",s7_title:"7. Contato",s7_p1:'Para dúvidas sobre privacidade, contate <a href="mailto:paulo@barros.no">paulo@barros.no</a> ou use o <a href="contato.html">formulário de contato</a>.',s7_form:"formulário de contato",footer_slogan:"Inteligência de risco biomecânico com IA para o transporte norueguês.",footer_ql:"Links Rápidos",footer_social:"Redes Sociais",footer_legal:"Legal",footer_contact:"Contato",footer_privacy:"Política de Privacidade",footer_terms:"Termos de Uso",footer_cookies:"Política de Cookies",footer_copy:"© 2026 SALA — Safe-Load Analytics. Todos os direitos reservados.",footer_dev:"Desenvolvido por",ck_title:"Usamos cookies",ck_desc:'Usamos cookies para melhorar sua experiência. Consulte nossa <a href="cookies.html">Política de Cookies</a>.',ck_reject:"Rejeitar",ck_custom:"Personalizar",ck_accept:"Aceitar Tudo"},
+  no:{nav_algorithm:"Algoritme",nav_risk:"Risikoindeks",nav_impact:"Innvirkning",nav_compliance:"Samsvar",nav_demo:"Be om demo",back:"Tilbake",toc_title:"Innhold",toc_s1:"1. Behandlingsansvarlig",toc_s2:"2. Data vi samler inn",toc_s3:"3. Formål og grunnlag",toc_s4:"4. Datalagring",toc_s5:"5. Dine rettigheter",toc_s6:"6. Informasjonskapsler",toc_s7:"7. Kontakt",priv_label:"Juridisk",priv_title:"<span class='gradient-text'>Personvern</span>serklæring",priv_updated:"Sist oppdatert: 01. januar 2026",s1_title:"1. Behandlingsansvarlig",s1_p1:'SALA — Safe-Load Analytics drives av Paulo Fernando de Barros, med adresse i Larvik, Norge. Kontakt: <a href="mailto:paulo@barros.no">paulo@barros.no</a>.',s1_note:"Behandling av personopplysninger skjer i henhold til GDPR og norsk personopplysningslov.",s2_title:"2. Data vi samler inn",s2_intro:"Vi kan samle inn følgende kategorier av personopplysninger:",s2_i1:"Kontaktinformasjon (navn, e-post, bedriftsnavn)",s2_i2:"Profesjonell informasjon (stilling, sektor)",s2_i3:"Bruksdata (besøkte sider, tid brukt, interaksjoner)",s2_i4:"Tekniske data (IP-adresse, nettlesertype, enhetstype)",s2_i5:"Yrkesdata via SALA-plattformen (anonymiserte biomekaniske beregninger)",s3_title:"3. Formål og rettslig grunnlag",s3_intro:"Vi behandler dine data for følgende formål:",s3_i1:"Levere og forbedre SALA (berettiget interesse / kontrakt)",s3_i2:"Svare på demo-forespørsler (kontrakt / samtykke)",s3_i3:"Sikre samsvar med norsk arbeidsmiljølov (rettslig forpliktelse)",s3_i4:"Analyse av plattformbruk (berettiget interesse)",s3_i5:"Markedsføringskommunikasjon der samtykke er gitt",s4_title:"4. Lagring av data",s4_p1:"Kontaktskjemaer lagres i 24 måneder. Plattformbruksdata i 12 måneder. Anonymiserte analysedata kan lagres på ubestemt tid.",s5_title:"5. Dine rettigheter (GDPR)",s5_intro:"Under GDPR har du rett til:",s5_i1:"Innsyn — be om kopi av dine personopplysninger",s5_i2:"Retting — korrigere unøyaktige data",s5_i3:"Sletting — be om sletting av dine data",s5_i4:"Begrensning av behandling",s5_i5:"Dataportabilitet",s5_i6:"Protestere mot behandling basert på berettiget interesse",s5_complaint:'Klager kan rettes til Datatilsynet på <a href="https://www.datatilsynet.no" target="_blank">datatilsynet.no</a>.',s6_title:"6. Informasjonskapsler",s6_p1:'Vi bruker informasjonskapsler for at nettstedet skal fungere korrekt. Se vår <a href="cookies.html">informasjonskapsel-policy</a>.',s6_link:"Informasjonskapsel-policy",s7_title:"7. Kontakt",s7_p1:'For personvernhenvendelser, kontakt <a href="mailto:paulo@barros.no">paulo@barros.no</a> eller bruk <a href="contato.html">kontaktskjemaet</a>.',s7_form:"kontaktskjemaet",footer_slogan:"KI-drevet biomekanisk risikoanalyse for norsk transportsektor.",footer_ql:"Hurtiglenker",footer_social:"Sosiale medier",footer_legal:"Juridisk",footer_contact:"Kontakt",footer_privacy:"Personvernerklæring",footer_terms:"Bruksvilkår",footer_cookies:"Informasjonskapselpolicy",footer_copy:"© 2026 SALA — Safe-Load Analytics. Alle rettigheter forbeholdt.",footer_dev:"Utviklet av",ck_title:"Vi bruker informasjonskapsler",ck_desc:'Vi bruker informasjonskapsler for å forbedre opplevelsen din. Se vår <a href="cookies.html">informasjonskapsel-policy</a>.',ck_reject:"Avvis",ck_custom:"Tilpass",ck_accept:"Godta alle"}
+};
+let currentLang=localStorage.getItem('sala_lang')||'en';
+function setLang(l){currentLang=l;localStorage.setItem('sala_lang',l);applyLang();closeLang()}
+function applyLang(){const t=T[currentLang];document.documentElement.lang=currentLang;document.getElementById('langLabel').textContent=currentLang.toUpperCase();document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(t[k]!==undefined)el.innerHTML=t[k]});document.getElementById('ck_desc').innerHTML=t.ck_desc;document.querySelectorAll('.lang-option').forEach(btn=>btn.classList.toggle('active',btn.getAttribute('onclick').includes(`'${currentLang}'`)))}
+function toggleLang(){document.getElementById('langDropdown').classList.toggle('open');document.getElementById('langBtn').classList.toggle('open')}
+function closeLang(){document.getElementById('langDropdown').classList.remove('open');document.getElementById('langBtn').classList.remove('open')}
+document.addEventListener('click',e=>{if(!document.getElementById('langSelector').contains(e.target))closeLang()});
+function cookieChoice(c){localStorage.setItem('sala_cookie',c);document.getElementById('cookieBanner').classList.remove('visible')}
+if(!localStorage.getItem('sala_cookie')){setTimeout(()=>document.getElementById('cookieBanner').classList.add('visible'),1200)}
+// TOC active on scroll
+const sections=document.querySelectorAll('.legal-section');
+const links=document.querySelectorAll('.toc-list a');
+window.addEventListener('scroll',()=>{let cur='';sections.forEach(s=>{if(window.scrollY>=s.offsetTop-140)cur=s.id});links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+cur))});
+applyLang();
+</script>
+</body>
+</html>
